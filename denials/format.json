@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CORPIFORMExecutionDenial",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "denial_id",
+    "system",
+    "system_fingerprint",
+    "build_hash",
+    "version",
+    "command_id",
+    "authority_seal_id",
+    "body",
+    "action",
+    "adapter",
+    "timestamp",
+    "reason",
+    "signature"
+  ],
+  "properties": {
+    "denial_id": {
+      "type": "string",
+      "description": "Globally unique denial identifier"
+    },
+    "system": {
+      "type": "string",
+      "const": "CORPIFORM"
+    },
+    "system_fingerprint": {
+      "type": "string",
+      "description": "Canonical CORPIFORM instance fingerprint"
+    },
+    "build_hash": {
+      "type": "string",
+      "description": "Immutable build hash of the system"
+    },
+    "version": {
+      "type": "string",
+      "description": "CORPIFORM version string"
+    },
+    "command_id": {
+      "type": "string",
+      "description": "Execution command identifier"
+    },
+    "authority_seal_id": {
+      "type": "string",
+      "description": "Authority seal identifier, if provided"
+    },
+    "body": {
+      "type": "string",
+      "description": "Target body for attempted execution"
+    },
+    "action": {
+      "type": "string",
+      "description": "Attempted action class"
+    },
+    "adapter": {
+      "type": "string",
+      "description": "Attempted adapter"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC refusal timestamp"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Canonical refusal reason"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature binding denial contents"
+    }
+  }
+}

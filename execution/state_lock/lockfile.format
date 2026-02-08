@@ -1,0 +1,49 @@
+LOCKFILE FORMAT
+
+Each lockfile represents a single execution attempt for a command.
+
+---
+
+FILENAME
+<command_id>.lock
+
+---
+
+CONTENTS
+command_id=<string>
+acquired_at=<UTC ISO-8601 timestamp>
+
+---
+
+SEMANTICS
+
+- A lockfile is created exactly once per command_id.
+- Presence of a lockfile means the command has already been attempted.
+- Lockfiles MUST NOT be modified after creation.
+- Lockfiles MUST NOT be overwritten.
+- Lockfiles MUST NOT be reused for other commands.
+
+---
+
+LIFECYCLE
+
+1. Created before execution attempt.
+2. Remains after successful execution.
+3. May be removed only on explicit denial path.
+4. Never recreated for the same command_id.
+
+---
+
+INVALIDATION
+
+If a lockfile is missing, malformed, or ambiguous:
+- execution MUST be refused
+- the system MUST be treated as compromised
+
+---
+
+DECLARATION
+
+Lockfiles enforce execute-once reality.
+
+Without them, CORPIFORM must not act.

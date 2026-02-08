@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST REFUSE ON AMBIGUITY
+# Verifies that any ambiguous input or state causes refusal.
+
+export EXECUTION_COMMAND_PATH="fixtures/invalid_authority/ambiguous_command.json"
+export AUTHORITY_SEAL_PATH="fixtures/valid_authority/ambiguous_seal.json"
+export EXECUTION_CUSTODIAN="test-custodian"
+
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: execution succeeded under ambiguity"
+  exit 1
+fi
+
+echo "PASS: execution refused on ambiguity"
+exit 0

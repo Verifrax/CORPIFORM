@@ -1,0 +1,27 @@
+# STDOUT SAMPLE LOG
+
+This file is a **non-authoritative example** of standard output
+produced during a CORPIFORM execution.
+
+---
+
+EXECUTION START
+AUTHORITY VERIFIED
+SCOPE VERIFIED
+TIME WINDOW VERIFIED
+CUSTODY VERIFIED
+LOCK ACQUIRED
+EXECUTION COMPLETED
+RECEIPT EMITTED
+EXECUTION END
+
+---
+
+## NOTES
+
+- This is a static sample.
+- It does not correspond to a real execution.
+- It must never be treated as evidence.
+- Real stdout must never be committed.
+
+Only signed receipts and denials are authoritative.

@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CORPIFORMAuthorityRevocation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issuer",
+    "revocation_id",
+    "authority_seal_id",
+    "reason",
+    "effective_at",
+    "signature"
+  ],
+  "properties": {
+    "issuer": {
+      "type": "string",
+      "description": "Authority issuer identifier (must match trusted roots)"
+    },
+    "revocation_id": {
+      "type": "string",
+      "description": "Globally unique revocation identifier"
+    },
+    "authority_seal_id": {
+      "type": "string",
+      "description": "Identifier of the authority seal being revoked"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Canonical reason for revocation"
+    },
+    "effective_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when revocation becomes effective"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature of the authority issuer"
+    }
+  }
+}

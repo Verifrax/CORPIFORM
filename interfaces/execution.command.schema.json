@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExecutionCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command_id",
+    "body",
+    "action",
+    "adapter",
+    "parameters",
+    "authority_seal_id"
+  ],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "description": "Globally unique execution command identifier"
+    },
+    "body": {
+      "type": "string",
+      "description": "Target CORPIFORM body to execute the command"
+    },
+    "action": {
+      "type": "string",
+      "description": "Action class to be executed"
+    },
+    "adapter": {
+      "type": "string",
+      "description": "Declared adapter to be used for execution"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Adapter-specific execution parameters",
+      "additionalProperties": true
+    },
+    "authority_seal_id": {
+      "type": "string",
+      "description": "Identifier of the authority seal authorizing this command"
+    }
+  }
+}

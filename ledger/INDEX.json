@@ -1,0 +1,27 @@
+{
+  "system": "CORPIFORM",
+  "ledger_version": "v1",
+  "structure": {
+    "receipts": "ledger/receipts/",
+    "denials": "ledger/denials/",
+    "revocations": "ledger/revocations/",
+    "locks": "ledger/locks/",
+    "checkpoints": "ledger/checkpoints/"
+  },
+  "rules": {
+    "append_only": true,
+    "immutable": true,
+    "no_deletion": true,
+    "no_reordering": true
+  },
+  "integrity": {
+    "signatures_required": true,
+    "timestamps_utc": true,
+    "unique_filenames": true
+  },
+  "failure_policy": {
+    "on_missing_entry": "REFUSE_EXECUTION",
+    "on_index_corruption": "REFUSE_ALL",
+    "on_mismatch": "REFUSE_ALL"
+  }
+}

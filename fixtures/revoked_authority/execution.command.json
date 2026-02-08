@@ -1,0 +1,12 @@
+{
+  "command_id": "cmd-revoked-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "parameters": {
+    "to": "recipient@example.test",
+    "from": "sender@example.test",
+    "subject": "Revoked Authority Test",
+    "body": "This execution must be refused because the authority is revoked."
+  }
+}

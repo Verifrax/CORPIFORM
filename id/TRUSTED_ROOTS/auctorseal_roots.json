@@ -1,0 +1,26 @@
+{
+  "trusted_roots": [
+    {
+      "name": "AUCTORISEAL_PRIMARY",
+      "type": "authority_issuer",
+      "status": "ACTIVE",
+      "fingerprint": "UNSET",
+      "algorithm": "SHA-256",
+      "valid_from": "UNSET",
+      "valid_until": "UNSET",
+      "notes": "Primary authority root for CORPIFORM. Must match AUCTORISEAL sealing keys exactly."
+    }
+  ],
+  "rules": {
+    "allow_multiple_roots": false,
+    "allow_fallback": false,
+    "allow_runtime_update": false,
+    "require_exact_match": true
+  },
+  "failure_policy": {
+    "on_missing_root": "REFUSE_ALL",
+    "on_invalid_root": "REFUSE_ALL",
+    "on_expired_root": "REFUSE_ALL",
+    "on_ambiguous_root": "REFUSE_ALL"
+  }
+}

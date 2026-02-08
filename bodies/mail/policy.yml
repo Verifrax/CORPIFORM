@@ -1,0 +1,33 @@
+# MAIL BODY POLICY
+# Hard constraints for all mail-related executions.
+
+body: mail
+
+allowed_actions:
+  - MAIL_DISPATCH
+  - MAIL_RECEIVE_EXTRACT
+
+allowed_adapters:
+  - smtp
+  - api
+
+constraints:
+  allow_dynamic_recipients: false
+  allow_content_mutation: false
+  allow_forwarding: false
+  allow_batching: false
+  allow_retry: false
+  allow_fallback_adapter: false
+  allow_implicit_headers: false
+
+data_handling:
+  store_message_body: false
+  store_attachments: false
+  store_subject: false
+  store_addresses: false
+  store_only_metadata: true
+
+failure_policy:
+  on_policy_violation: REFUSE
+  on_adapter_failure: REFUSE
+  on_ambiguity: REFUSE_ALL

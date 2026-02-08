@@ -1,0 +1,15 @@
+{
+  "receipt_id": "receipt-replay-001",
+  "system": "CORPIFORM",
+  "system_fingerprint": "test-fingerprint",
+  "build_hash": "test-build-hash",
+  "version": "v0.test",
+  "command_id": "cmd-replay-001",
+  "authority_seal_id": "seal-replay-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "timestamp": "2025-01-02T12:00:00Z",
+  "outcome": "EXECUTED",
+  "signature": "TEST_SIGNATURE_PRIOR_RECEIPT"
+}

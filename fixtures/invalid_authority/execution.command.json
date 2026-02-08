@@ -1,0 +1,12 @@
+{
+  "command_id": "cmd-invalid-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "parameters": {
+    "to": "recipient@example.test",
+    "from": "sender@example.test",
+    "subject": "Invalid Authority Test",
+    "body": "This execution must be refused due to invalid authority."
+  }
+}

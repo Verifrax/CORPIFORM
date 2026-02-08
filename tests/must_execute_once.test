@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST EXECUTE ONCE
+# Verifies that a command cannot be executed more than once.
+
+export EXECUTION_COMMAND_PATH="fixtures/valid_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/valid_authority/seal.json"
+export EXECUTION_CUSTODIAN="test-custodian"
+export SYSTEM_FINGERPRINT="test-fingerprint"
+export BUILD_HASH="test-build-hash"
+export CORPIFORM_VERSION="v0.test"
+export RECEIPT_SIGNING_KEY="fixtures/keys/receipt.key"
+export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
+
+# First execution should succeed
+if ! runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: first execution did not succeed"
+  exit 1
+fi
+
+# Second execution must be refused
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: execution retried and succeeded"
+  exit 1
+fi
+
+echo "PASS: execute-once enforced"
+exit 0

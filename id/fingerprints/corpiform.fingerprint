@@ -1,0 +1,50 @@
+CORPIFORM SYSTEM FINGERPRINT
+
+This file contains the canonical fingerprint that uniquely identifies
+this CORPIFORM instance across all executions, receipts, and audits.
+
+---
+
+FINGERPRINT: UNSET
+
+---
+
+## RULES
+
+- The fingerprint MUST be globally unique.
+- The fingerprint MUST be generated once.
+- The fingerprint MUST NOT be regenerated.
+- The fingerprint MUST NOT be derived from mutable state.
+- The fingerprint MUST be referenced in all receipts and denials.
+
+---
+
+## GENERATION
+
+The fingerprint MUST be generated using a cryptographically secure method
+and MUST bind:
+
+- SYSTEM_IDENTITY
+- BUILD_HASH
+- VERSION
+
+---
+
+## VALIDITY
+
+If this fingerprint is:
+
+- missing
+- altered
+- duplicated
+- ambiguous
+
+CORPIFORM MUST refuse all execution and be treated as invalid.
+
+---
+
+## DECLARATION
+
+This fingerprint is the singular identity of this CORPIFORM instance.
+
+Without it, CORPIFORM does not exist.

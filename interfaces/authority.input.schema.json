@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AuthorityInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issuer",
+    "seal_id",
+    "body",
+    "action",
+    "scope",
+    "custodian",
+    "time_window",
+    "signature"
+  ],
+  "properties": {
+    "issuer": {
+      "type": "string",
+      "description": "Authority issuer identifier (must match trusted roots)"
+    },
+    "seal_id": {
+      "type": "string",
+      "description": "Globally unique authority seal identifier"
+    },
+    "body": {
+      "type": "string",
+      "description": "Target CORPIFORM body authorized to execute"
+    },
+    "action": {
+      "type": "string",
+      "description": "Authorized action class"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resources"],
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+    "custodian": {
+      "type": "string",
+      "description": "Named responsible custodian"
+    },
+    "time_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_from", "valid_until"],
+      "properties": {
+        "valid_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "valid_until": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature of the authority issuer"
+    }
+  }
+}

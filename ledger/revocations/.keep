@@ -1,0 +1,11 @@
+# PLACEHOLDER
+
+This file exists solely to ensure the directory is present in version control.
+
+It carries no semantic meaning.
+It must never be read, written, or referenced at runtime.
+
+If this file is missing, it has no effect.
+If this file is modified, it has no effect.
+
+All authoritative data lives in signed revocation artifacts only.

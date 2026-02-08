@@ -1,0 +1,45 @@
+CORPIFORM BUILD HASH
+
+This file records the cryptographic hash of the exact source tree
+used to build and operate this instance of CORPIFORM.
+
+---
+
+BUILD_HASH: UNSET
+
+---
+
+## RULES
+
+- The BUILD_HASH is computed over the complete, canonical source tree.
+- The hash MUST be generated using a cryptographically secure algorithm.
+- The hash MUST be written once and never modified.
+- A missing or UNSET hash indicates a non-final, non-authoritative build.
+
+---
+
+## VALIDITY
+
+A BUILD_HASH is valid only if:
+
+- it matches the verified source tree
+- it corresponds to a declared VERSION
+- it is referenced by execution receipts
+- it is traceable in the ledger
+
+---
+
+## INVALIDATION
+
+If this file is missing, altered, or mismatched:
+
+- CORPIFORM MUST refuse all execution
+- CORPIFORM MUST be treated as compromised
+
+---
+
+## DECLARATION
+
+This BUILD_HASH binds code to reality.
+
+Without it, CORPIFORM does not exist.

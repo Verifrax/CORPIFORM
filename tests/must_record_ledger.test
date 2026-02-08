@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST RECORD LEDGER
+# Verifies that CORPIFORM records an immutable ledger artifact for both
+# success (receipt) and refusal (denial).
+
+export SYSTEM_FINGERPRINT="test-fingerprint"
+export BUILD_HASH="test-build-hash"
+export CORPIFORM_VERSION="v0.test"
+export RECEIPT_SIGNING_KEY="fixtures/keys/receipt.key"
+export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
+export EXECUTION_CUSTODIAN="test-custodian"
+
+mkdir -p ledger/receipts ledger/denials ledger/locks
+
+receipts_before=$(find ledger/receipts -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+denials_before=$(find ledger/denials -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+
+# --- SUCCESS PATH: must create 1 receipt artifact ---
+export EXECUTION_COMMAND_PATH="fixtures/valid_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/valid_authority/seal.json"
+
+if ! runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: expected success execution to complete"
+  exit 1
+fi
+
+receipts_after_success=$(find ledger/receipts -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+if [[ $((receipts_after_success - receipts_before)) -ne 1 ]]; then
+  echo "FAIL: ledger did not record exactly one receipt"
+  exit 1
+fi
+
+# --- REFUSAL PATH: must create 1 denial artifact ---
+export EXECUTION_COMMAND_PATH="fixtures/invalid_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/invalid_authority/seal.json"
+
+# refusal expected
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: expected refusal execution to fail"
+  exit 1
+fi
+
+denials_after_refusal=$(find ledger/denials -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+if [[ $((denials_after_refusal - denials_before)) -ne 1 ]]; then
+  echo "FAIL: ledger did not record exactly one denial"
+  exit 1
+fi
+
+echo "PASS: ledger records receipts and denials"
+exit 0

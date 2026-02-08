@@ -1,0 +1,12 @@
+{
+  "command_id": "cmd-expired-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "parameters": {
+    "to": "recipient@example.test",
+    "from": "sender@example.test",
+    "subject": "Expired Authority Test",
+    "body": "This execution must be refused because the authority is expired."
+  }
+}

@@ -1,0 +1,32 @@
+# PUBLISH BODY POLICY
+# Hard constraints for all artifact publication executions.
+
+body: publish
+
+allowed_actions:
+  - ARTIFACT_PUBLISH
+
+allowed_adapters:
+  - github_release
+  - registry
+
+constraints:
+  allow_artifact_mutation: false
+  allow_retraction: false
+  allow_deletion: false
+  allow_republish: false
+  allow_target_inference: false
+  allow_batching: false
+  allow_retry: false
+  allow_fallback_adapter: false
+
+data_handling:
+  store_artifact_payload: false
+  store_artifact_hash: true
+  store_release_target: true
+  store_only_metadata: true
+
+failure_policy:
+  on_policy_violation: REFUSE
+  on_adapter_failure: REFUSE
+  on_ambiguity: REFUSE_ALL

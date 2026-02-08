@@ -1,0 +1,57 @@
+# RATE LIMITS POLICY
+# CORPIFORM enforces rate limits as a **safety brake**, not a throughput control.
+# Rate limits protect against abuse, automation storms, and operator error.
+# They do NOT permit retries or batching.
+
+policy: rate_limits
+
+scope:
+  applies_to:
+    - authority_requests
+    - execution_attempts
+    - denial_emission
+    - receipt_emission
+
+defaults:
+  execution_attempts:
+    max_per_minute: 1
+    max_per_hour: 5
+    behavior_on_exceed: REFUSE
+
+  authority_requests:
+    max_per_minute: 2
+    max_per_hour: 10
+    behavior_on_exceed: REFUSE
+
+  denial_emission:
+    max_per_minute: 10
+    behavior_on_exceed: ALLOW
+
+  receipt_emission:
+    max_per_minute: 10
+    behavior_on_exceed: ALLOW
+
+per_custodian:
+  enabled: true
+  enforcement: HARD
+  key: execution_custodian
+
+per_authority_seal:
+  enabled: true
+  enforcement: HARD
+  key: authority_seal_id
+
+exceptions:
+  allow_burst: false
+  allow_override: false
+  allow_reset: false
+
+failure_policy:
+  on_limit_exceeded: REFUSE
+  emit_denial: true
+  consume_authority: false
+
+declaration: >
+  Rate limits exist to prevent damage under stress.
+  They never enable execution.
+  Exceeding a limit always results in refusal.

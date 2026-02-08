@@ -1,0 +1,51 @@
+# ALLOWED ACTIONS
+# This file defines the complete set of action classes CORPIFORM is
+# mechanically permitted to execute. This list is closed.
+
+allowed_actions:
+  - id: MAIL_DISPATCH
+    body: mail
+    description: "Send outbound email via declared adapters only"
+    adapters:
+      - smtp
+      - api
+    retry: false
+    composite: false
+
+  - id: PAYMENT_TRANSFER
+    body: payment
+    description: "Transfer funds via declared payment adapters"
+    adapters:
+      - stripe
+      - bank
+    retry: false
+    composite: false
+
+  - id: ARTIFACT_PUBLISH
+    body: publish
+    description: "Publish immutable artifacts to declared registries"
+    adapters:
+      - github_release
+      - registry
+    retry: false
+    composite: false
+
+  - id: DEPLOYMENT_PROMOTION
+    body: deploy
+    description: "Promote deployments to production targets"
+    adapters:
+      - k8s
+      - ssh
+    retry: false
+    composite: false
+
+rules:
+  allow_dynamic_actions: false
+  allow_runtime_extension: false
+  allow_cross_body_execution: false
+
+failure_policy:
+  on_unknown_action: REFUSE
+  on_body_mismatch: REFUSE
+  on_adapter_mismatch: REFUSE
+  on_policy_violation: REFUSE

@@ -1,0 +1,21 @@
+# STDERR SAMPLE LOG
+
+This file is a **non-authoritative example** of standard error output
+produced during a CORPIFORM refusal.
+
+---
+
+REFUSE: scope mismatch
+DENIAL EMITTED
+EXECUTION TERMINATED
+
+---
+
+## NOTES
+
+- This is a static sample.
+- It does not correspond to a real execution.
+- It must never be treated as evidence.
+- Real stderr must never be committed.
+
+Only signed denials are authoritative.

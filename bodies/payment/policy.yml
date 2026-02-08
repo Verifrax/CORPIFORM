@@ -1,0 +1,33 @@
+# PAYMENT BODY POLICY
+# Hard constraints for all payment-related executions.
+
+body: payment
+
+allowed_actions:
+  - PAYMENT_TRANSFER
+
+allowed_adapters:
+  - stripe
+  - bank
+
+constraints:
+  allow_dynamic_amounts: false
+  allow_recipient_inference: false
+  allow_batching: false
+  allow_splitting: false
+  allow_retry: false
+  allow_refund: false
+  allow_reversal: false
+  allow_fallback_adapter: false
+
+data_handling:
+  store_payment_tokens: false
+  store_account_numbers: false
+  store_recipient_identifiers: false
+  store_amounts: true
+  store_only_metadata: true
+
+failure_policy:
+  on_policy_violation: REFUSE
+  on_adapter_failure: REFUSE
+  on_ambiguity: REFUSE_ALL

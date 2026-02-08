@@ -1,0 +1,86 @@
+# =========================
+# CORPIFORM .gitignore
+# =========================
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.bak
+*.log
+
+# --- Git ---
+.gitconfig.local
+.git-credentials
+
+# --- Runtime secrets (MUST NEVER COMMIT) ---
+.env
+.env.*
+runtime/env/*.env
+runtime/env/*.secret*
+runtime/env/*.key
+runtime/env/*.pem
+
+# --- Cryptographic material ---
+*.key
+*.pem
+*.crt
+*.p12
+*.der
+*.sig
+
+# --- Ledger runtime artifacts (authoritative, external) ---
+ledger/receipts/*.json
+ledger/denials/*.json
+ledger/revocations/*.json
+ledger/checkpoints/*.json
+ledger/locks/*.lock
+
+# Keep directory structure
+!ledger/**/.keep
+!ledger/**/README.md
+
+# --- Execution locks / state ---
+execution/state_lock/*.lock
+execution/state_lock/*.tmp
+
+# --- Test runtime output ---
+test-output/
+coverage/
+*.coverage
+
+# --- Container / build artifacts ---
+*.tar
+*.tar.gz
+*.zip
+*.img
+
+# --- Temporary execution artifacts ---
+tmp/
+tmp/**
+.cache/
+.cache/**
+
+# --- CLI tools ---
+*.pid
+
+# --- Never ignore documentation ---
+!README.md
+!CHANGELOG.md
+!LICENSE
+!SECURITY.md
+!VERSION.md
+
+# --- Explicit allowlists ---
+!fixtures/**
+!interfaces/**
+!policy/**
+!compliance/**
+!observability/samples/**
+!observability/**/.keep
+
+# =========================
+# END CORPIFORM .gitignore
+# =========================

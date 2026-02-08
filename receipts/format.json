@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CORPIFORMExecutionReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "system",
+    "system_fingerprint",
+    "build_hash",
+    "version",
+    "command_id",
+    "authority_seal_id",
+    "body",
+    "action",
+    "adapter",
+    "timestamp",
+    "outcome",
+    "signature"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "description": "Globally unique receipt identifier"
+    },
+    "system": {
+      "type": "string",
+      "const": "CORPIFORM"
+    },
+    "system_fingerprint": {
+      "type": "string",
+      "description": "Canonical CORPIFORM instance fingerprint"
+    },
+    "build_hash": {
+      "type": "string",
+      "description": "Immutable build hash of the executing system"
+    },
+    "version": {
+      "type": "string",
+      "description": "CORPIFORM version string"
+    },
+    "command_id": {
+      "type": "string",
+      "description": "Execution command identifier"
+    },
+    "authority_seal_id": {
+      "type": "string",
+      "description": "Authority seal used for execution"
+    },
+    "body": {
+      "type": "string",
+      "description": "Executing body identifier"
+    },
+    "action": {
+      "type": "string",
+      "description": "Executed action class"
+    },
+    "adapter": {
+      "type": "string",
+      "description": "Adapter used for execution"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC execution completion timestamp"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["EXECUTED"]
+    },
+    "signature": {
+      "type": "string",
+      "description": "Cryptographic signature binding receipt contents"
+    }
+  }
+}

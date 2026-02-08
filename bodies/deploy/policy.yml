@@ -1,0 +1,31 @@
+# DEPLOY BODY POLICY
+# Hard constraints for all deployment promotion executions.
+
+body: deploy
+
+allowed_actions:
+  - DEPLOYMENT_PROMOTION
+
+allowed_adapters:
+  - k8s
+  - ssh
+
+constraints:
+  allow_build: false
+  allow_config_mutation: false
+  allow_target_inference: false
+  allow_rollback: false
+  allow_retry: false
+  allow_fallback_adapter: false
+  allow_multi_target: false
+
+data_handling:
+  store_credentials: false
+  store_target_identifiers: true
+  store_release_identifier: true
+  store_only_metadata: true
+
+failure_policy:
+  on_policy_violation: REFUSE
+  on_adapter_failure: REFUSE
+  on_ambiguity: REFUSE_ALL

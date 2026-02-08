@@ -1,0 +1,44 @@
+# CICULLIS CI PROFILE
+# Pre-damage enforcement profile for CORPIFORM execution pipelines.
+
+profile: cicullis-default
+
+enforcement:
+  require_authority: true
+  require_trusted_issuer: true
+  require_exact_scope: true
+  require_time_window: true
+  require_custody: true
+  require_execute_once_lock: true
+  refuse_on_ambiguity: true
+
+preconditions:
+  allow_execution_if:
+    - authority_verified
+    - scope_verified
+    - time_verified
+    - custody_verified
+    - lock_acquired
+    - no_prior_execution
+
+refusal_policy:
+  on_any_failure: REFUSE
+  emit_denial: true
+  halt_pipeline: true
+
+ci_behavior:
+  allow_partial_steps: false
+  allow_retry: false
+  allow_override: false
+  allow_manual_approval: false
+
+audit:
+  record_decision: true
+  require_receipt_or_denial: true
+  external_verification_allowed: true
+
+declaration: >
+  This CI profile enforces all CORPIFORM invariants before any
+  irreversible action is permitted.
+  If this file is missing, altered, or ambiguous,
+  execution MUST NOT proceed.

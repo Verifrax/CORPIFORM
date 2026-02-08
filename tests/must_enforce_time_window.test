@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST ENFORCE TIME WINDOW
+# Verifies that execution is refused when authority is outside its valid time window.
+
+export SYSTEM_FINGERPRINT="test-fingerprint"
+export BUILD_HASH="test-build-hash"
+export CORPIFORM_VERSION="v0.test"
+export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
+export EXECUTION_CUSTODIAN="test-custodian"
+
+export EXECUTION_COMMAND_PATH="fixtures/time_violation/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/time_violation/seal.json"
+
+mkdir -p ledger/denials ledger/locks
+
+# Must be refused due to time violation
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: execution succeeded outside time window"
+  exit 1
+fi
+
+echo "PASS: time window enforced"
+exit 0

@@ -1,0 +1,9 @@
+# PLACEHOLDER
+
+This file exists solely to ensure the directory is present in version control.
+
+It carries no semantic meaning.
+It must never be read, written, or referenced at runtime.
+
+Live execution traces must not be committed.
+Only sanitized samples may be placed here.

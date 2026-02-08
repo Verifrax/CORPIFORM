@@ -1,0 +1,53 @@
+# FORBIDDEN ACTIONS
+# This file defines actions and behaviors that are explicitly prohibited
+# under all circumstances. This list is absolute.
+
+forbidden_actions:
+  - id: AUTHORITY_ISSUANCE
+    description: "Issuing, modifying, or implying authority"
+    reason: "Authority is external and exclusive to AUCTORISEAL"
+
+  - id: AUTHORITY_ESCALATION
+    description: "Expanding scope, time, or custody beyond sealed authority"
+    reason: "Scope escalation is forbidden"
+
+  - id: RETRY_EXECUTION
+    description: "Retrying any execution after failure"
+    reason: "Execute-once invariant"
+
+  - id: CONDITIONAL_EXECUTION
+    description: "Executing actions based on inferred conditions or state"
+    reason: "No interpretation or branching allowed"
+
+  - id: COMPOSITE_ACTION
+    description: "Executing chained or multi-step actions as a single command"
+    reason: "Actions must be atomic and isolated"
+
+  - id: PARTIAL_EXECUTION
+    description: "Executing a subset of an action or adapter steps"
+    reason: "All-or-nothing execution only"
+
+  - id: FALLBACK_ADAPTER
+    description: "Switching adapters on failure"
+    reason: "No fallback or substitution permitted"
+
+  - id: STATE_MUTATION
+    description: "Modifying internal state to influence execution outcome"
+    reason: "State must remain inert"
+
+  - id: AUTHORITY_CACHING
+    description: "Reusing or caching authority seals"
+    reason: "Each execution requires a fresh seal"
+
+  - id: SILENT_FAILURE
+    description: "Suppressing failures or denials"
+    reason: "All failures must emit denial artifacts"
+
+rules:
+  allow_override: false
+  allow_exception: false
+  allow_operator_bypass: false
+
+failure_policy:
+  on_forbidden_action_detected: REFUSE_ALL
+  on_policy_ambiguity: REFUSE_ALL

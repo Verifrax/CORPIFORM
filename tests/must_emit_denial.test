@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST EMIT DENIAL
+# Verifies that a refused execution emits exactly one denial artifact.
+
+export EXECUTION_COMMAND_PATH="fixtures/invalid_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/invalid_authority/seal.json"
+export EXECUTION_CUSTODIAN="test-custodian"
+export SYSTEM_FINGERPRINT="test-fingerprint"
+export BUILD_HASH="test-build-hash"
+export CORPIFORM_VERSION="v0.test"
+export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
+
+DENIALS_BEFORE=$(ls ledger/denials 2>/dev/null | wc -l)
+
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: execution unexpectedly succeeded"
+  exit 1
+fi
+
+DENIALS_AFTER=$(ls ledger/denials 2>/dev/null | wc -l)
+
+if [[ "$((DENIALS_AFTER - DENIALS_BEFORE))" -ne 1 ]]; then
+  echo "FAIL: denial not emitted exactly once"
+  exit 1
+fi
+
+echo "PASS: denial emitted exactly once"
+exit 0

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST NOT RETRY
+# Verifies that a failed execution is not retried under any condition.
+
+export EXECUTION_COMMAND_PATH="fixtures/invalid_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/invalid_authority/seal.json"
+export EXECUTION_CUSTODIAN="test-custodian"
+
+# First attempt must fail
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: invalid execution succeeded"
+  exit 1
+fi
+
+# Second attempt must also fail (no retry path)
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: retry succeeded"
+  exit 1
+fi
+
+echo "PASS: no retry enforced"
+exit 0

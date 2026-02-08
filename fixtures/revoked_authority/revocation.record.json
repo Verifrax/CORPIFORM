@@ -1,0 +1,8 @@
+{
+  "issuer": "auctoriseal:test-root",
+  "revocation_id": "revocation-001",
+  "authority_seal_id": "seal-revoked-001",
+  "reason": "TEST_REVOCATION",
+  "effective_at": "2025-01-01T00:00:00Z",
+  "signature": "TEST_SIGNATURE_REVOCATION"
+}

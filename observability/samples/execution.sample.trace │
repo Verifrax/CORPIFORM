@@ -1,0 +1,46 @@
+# EXECUTION TRACE SAMPLE
+
+This file is a **non-authoritative, illustrative trace** of a CORPIFORM execution path.
+
+---
+
+TRACE START
+step=runtime.verify_environment
+result=OK
+
+step=execution.require_authority
+result=OK
+
+step=execution.verify_seal
+result=OK
+
+step=execution.verify_scope
+result=OK
+
+step=execution.verify_time_window
+result=OK
+
+step=execution.verify_custody
+result=OK
+
+step=execution.acquire_lock
+result=OK
+
+step=execution.execute_once
+result=OK
+
+step=execution.emit_receipt
+result=OK
+
+TRACE END
+
+---
+
+## NOTES
+
+- This trace is static and illustrative only.
+- It does not represent a real execution.
+- It carries no authority.
+- It must never be treated as evidence.
+
+Only signed receipts and denials define reality.

@@ -1,0 +1,12 @@
+{
+  "command_id": "cmd-time-violation-001",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "parameters": {
+    "to": "recipient@example.test",
+    "from": "sender@example.test",
+    "subject": "Time Violation Test",
+    "body": "This execution must be refused because authority time window is invalid."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "issuer": "auctoriseal:test-root",
+  "authority_seal_id": 12345,
+  "custodian": null,
+  "scope": "mail:send",
+  "valid_from": "not-a-timestamp",
+  "valid_until": 999999,
+  "single_use": "yes",
+  "signature": 42
+}

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TEST: MUST REFUSE WITHOUT AUTHORITY
+# Verifies that execution is refused when no authority seal is provided.
+
+unset AUTHORITY_SEAL_PATH
+export EXECUTION_COMMAND_PATH="fixtures/invalid_authority/command.json"
+export EXECUTION_CUSTODIAN="test-custodian"
+
+if runtime/runner/run.sh >/dev/null 2>&1; then
+  echo "FAIL: execution succeeded without authority"
+  exit 1
+fi
+
+echo "PASS: execution refused without authority"
+exit 0
