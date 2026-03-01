@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Repo sanity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md || (echo "E_MISSING_README" && exit 1)
+          test -f LICENSE || (echo "E_MISSING_LICENSE" && exit 1)
+
+      - name: Deterministic file list
+        shell: bash
+        run: |
+          set -euo pipefail
+          git ls-files | LC_ALL=C sort | sed -n '1,200p'
