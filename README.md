@@ -183,3 +183,12 @@ CORPIFORM exists to make **unauthorized, ambiguous, or deniable action impossibl
 
 If this repository is altered, incomplete, or inconsistent,  
 **CORPIFORM MUST NOT BE USED.**
+
+## Contract
+- defines governance actors and decision constraints
+- pins policy documents and approval surfaces
+- maps authority boundaries to org structure
+
+## Layout
+- `policies/` : governance policy artifacts (human + machine readable)
+- `docs/`     : rationale + change control
