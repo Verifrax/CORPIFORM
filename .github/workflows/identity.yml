@@ -1,12 +1,13 @@
 name: Identity
 on:
+  pull_request:
   push:
     branches: [ main ]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  identity:
+  Identity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
