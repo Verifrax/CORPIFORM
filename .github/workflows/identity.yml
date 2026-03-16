@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
 jobs:
-  identity:
+  Identity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
