@@ -121,7 +121,7 @@ Primary directories:
 - `seals/`
 - `interfaces/`
 - `id/`
-- `integrations/auctorseal/`
+- `integrations/auctoriseal/`
 
 Key files:
 
@@ -133,10 +133,10 @@ Key files:
 - `seals/reject_invalid.sh`
 - `interfaces/authority.input.schema.json`
 - `interfaces/revocation.input.schema.json`
-- `id/TRUSTED_ROOTS/auctorseal_roots.json`
+- `id/TRUSTED_ROOTS/auctoriseal_roots.json`
 - `id/SYSTEM_IDENTITY.md`
-- `integrations/auctorseal/fetch_seal.sh`
-- `integrations/auctorseal/request_authority.sh`
+- `integrations/auctoriseal/fetch_seal.sh`
+- `integrations/auctoriseal/request_authority.sh`
 
 Use these when checking:
 
@@ -350,7 +350,7 @@ Key directories:
 - `seals/`
 - `interfaces/`
 - `id/`
-- `integrations/auctorseal/`
+- `integrations/auctoriseal/`
 
 ### Outputs
 

@@ -34,7 +34,7 @@ if [[ -z "$SIGNATURE" || "$SIGNATURE" == "null" ]]; then
   exit 1
 fi
 
-TRUSTED_ROOTS="id/TRUSTED_ROOTS/auctorseal_roots.json"
+TRUSTED_ROOTS="id/TRUSTED_ROOTS/auctoriseal_roots.json"
 
 if [[ ! -f "$TRUSTED_ROOTS" ]]; then
   echo "REFUSE: trusted roots not found"

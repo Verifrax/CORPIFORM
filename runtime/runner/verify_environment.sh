@@ -26,7 +26,7 @@ REQUIRED_PATHS=(
   "id/SYSTEM_IDENTITY.md"
   "id/BUILD_HASH.txt"
   "id/fingerprints/corpiform.fingerprint"
-  "id/TRUSTED_ROOTS/auctorseal_roots.json"
+  "id/TRUSTED_ROOTS/auctoriseal_roots.json"
 )
 
 for p in "${REQUIRED_PATHS[@]}"; do

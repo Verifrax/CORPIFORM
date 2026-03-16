@@ -38,7 +38,7 @@ check_file VERSION.md
 check_file id/SYSTEM_IDENTITY.md
 check_file id/BUILD_HASH.txt
 check_file id/fingerprints/corpiform.fingerprint
-check_file id/TRUSTED_ROOTS/auctorseal_roots.json
+check_file id/TRUSTED_ROOTS/auctoriseal_roots.json
 
 # Policy
 check_dir policy
