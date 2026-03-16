@@ -431,6 +431,19 @@ This index exists to remove that ambiguity.
 
 ---
 
+## Canonical evidence surfaces
+
+The current canonical public evidence surfaces are:
+
+- repository doctrine and control boundary under the repository root
+- execution control surface under `execution/`
+- authority and seal verification surface under `seals/`, `interfaces/`, `id/`, and `integrations/auctoriseal/`
+- output artifact surface under `receipts/` and `denials/`
+- ledger and revocation surface under `ledger/` and `revocation/`
+- adversarial fixture and test surface under `fixtures/` and `tests/`
+- runtime and observability surface under `runtime/`, `tools/`, and `observability/`
+- release boundary surface under `.verifrax/tags/v0.1.0.txt`
+
 ## Entry points
 
 If you are entering this repository for the first time, start here:
@@ -446,6 +459,22 @@ If you are entering this repository for the first time, start here:
 - verification-facing integrations: `integrations/verifrax/README.md`
 
 ---
+
+## Release boundary
+
+CORPIFORM records its declared repository release boundary in:
+
+- `.verifrax/tags/v0.1.0.txt`
+
+This surface binds the declared version to:
+- repository identity
+- canonical repository head
+- recorded timestamp
+- non-final pre-seal state
+- explicit compatibility boundary
+
+It is a release declaration surface only.
+It is not an authority seal and does not change execution semantics.
 
 ## Scope boundary
 
