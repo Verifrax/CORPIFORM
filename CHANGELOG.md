@@ -17,6 +17,23 @@ No entry is ever modified or removed.
 
 ---
 
+## [v0.1.1] — PRE-SEAL
+
+**STATUS:** NON-FINAL  
+**AUTHORITY:** NOT SEALED  
+**COMPATIBILITY:** NONE
+
+### Added
+- Recorded canonical release-boundary surface for the updated published repository state
+- Aligned public root control surfaces with the published non-final pre-seal posture
+
+### Notes
+- This version remains **not authoritative**
+- No execution guarantees are provided
+- Behavior remains subject to explicit future sealing
+
+---
+
 ## [v0.1.0] — PRE-SEAL
 
 **STATUS:** NON-FINAL  
