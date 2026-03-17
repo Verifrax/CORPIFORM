@@ -17,6 +17,21 @@ No entry is ever modified or removed.
 
 ---
 
+## [v0.1.2] — PRE-SEAL
+
+**STATUS:** NON-FINAL  
+**AUTHORITY:** NOT SEALED  
+**COMPATIBILITY:** NONE
+
+### Added
+- Recorded canonical release-boundary surface for the post-v0.1.1 published repository state
+- Advanced the forward-only published release declaration to the current canonical repository head
+
+### Notes
+- This version remains **not authoritative**
+- No execution guarantees are provided
+- Behavior remains subject to explicit future sealing
+
 ## [v0.1.1] — PRE-SEAL
 
 **STATUS:** NON-FINAL  
