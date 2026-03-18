@@ -8,5 +8,6 @@
     "from": "sender@example.test",
     "subject": "Test Message",
     "body": "This is a test email dispatched under valid authority."
-  }
+  },
+  "authority_seal_id": "seal-valid-001"
 }

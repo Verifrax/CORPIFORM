@@ -8,5 +8,6 @@
     "from": "sender@example.test",
     "subject": "Expired Authority Test",
     "body": "This execution must be refused because the authority is expired."
-  }
+  },
+  "authority_seal_id": "seal-expired-001"
 }
