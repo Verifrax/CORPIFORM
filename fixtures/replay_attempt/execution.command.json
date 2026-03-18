@@ -8,5 +8,6 @@
     "from": "sender@example.test",
     "subject": "Replay Attempt Test",
     "body": "This command must execute once and be refused on replay."
-  }
+  },
+  "authority_seal_id": "seal-replay-001"
 }
