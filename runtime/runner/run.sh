@@ -12,14 +12,23 @@ set -euo pipefail
 : "${BUILD_HASH:?REFUSE: BUILD_HASH not set}"
 : "${CORPIFORM_VERSION:?REFUSE: CORPIFORM_VERSION not set}"
 
+# Canonical denial emission hook
+export DENIAL_EMIT_SCRIPT="${DENIAL_EMIT_SCRIPT:-denials/emit.sh}"
+
 # Ensure system is not dead or frozen
 if grep -q "DEAD" STATUS.md; then
   echo "REFUSE: system is dead"
+  if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+    "$DENIAL_EMIT_SCRIPT" "SYSTEM_DEAD" || true
+  fi
   exit 1
 fi
 
 if grep -q "FROZEN" STATUS.md; then
   echo "REFUSE: system is frozen"
+  if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+    "$DENIAL_EMIT_SCRIPT" "SYSTEM_FROZEN" || true
+  fi
   exit 1
 fi
 
