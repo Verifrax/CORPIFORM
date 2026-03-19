@@ -130,6 +130,7 @@ Key files:
 - `seals/verify_scope.sh`
 - `seals/verify_time_window.sh`
 - `seals/verify_custody.sh`
+- `seals/verify_revocation.sh`
 - `seals/reject_invalid.sh`
 - `interfaces/authority.input.schema.json`
 - `interfaces/revocation.input.schema.json`
@@ -220,6 +221,7 @@ Fixture classes currently present:
 - `fixtures/revoked_authority/`
 - `fixtures/scope_violation/`
 - `fixtures/time_violation/`
+- `fixtures/keys/`
 
 Test files currently present:
 
@@ -442,7 +444,7 @@ The current canonical public evidence surfaces are:
 - ledger and revocation surface under `ledger/` and `revocation/`
 - adversarial fixture and test surface under `fixtures/` and `tests/`
 - runtime and observability surface under `runtime/`, `tools/`, and `observability/`
-- release boundary surface under `.verifrax/tags/v0.1.0.txt`
+- release boundary surface under `.verifrax/tags/v0.1.3.txt`
 
 ## Entry points
 
@@ -464,7 +466,7 @@ If you are entering this repository for the first time, start here:
 
 CORPIFORM records its declared repository release boundary in:
 
-- `.verifrax/tags/v0.1.0.txt`
+- `.verifrax/tags/v0.1.3.txt`
 
 This surface binds the declared version to:
 - repository identity
@@ -493,3 +495,21 @@ It claims that the repository now has one public navigation root for:
 - verification-facing integrations
 
 That is the minimum condition for CORPIFORM to become a legible execution component in the VERIFRAX stack.
+
+## Release declaration surface
+
+The active repository release declaration is:
+
+- `.verifrax/tags/v0.1.3.txt`
+
+This declaration currently records:
+
+- version `v0.1.3`
+- repository identity `CORPIFORM`
+- recorded repository head
+- recorded timestamp
+- non-final pre-seal posture
+- explicit non-compatibility boundary
+
+It is a release declaration only. It is not an authority seal and does not authorize execution by itself.
+
