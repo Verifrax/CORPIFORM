@@ -13,6 +13,7 @@
     "url": "https://github.com/Verifrax/CORPIFORM/issues"
   },
   "files": [
+    "bin",
     "execution",
     "receipts",
     "denials",
@@ -32,5 +33,12 @@
     "receipt",
     "denial",
     "shell"
-  ]
+  ],
+  "bin": {
+    "corpiform": "bin/corpiform"
+  },
+  "scripts": {
+    "test": "./bin/corpiform help >/dev/null",
+    "smoke": "./bin/corpiform help"
+  }
 }
