@@ -9,12 +9,12 @@ It is the execution boundary that decides whether a permitted action may occur, 
 
 ## Current posture
 
-- **Version:** `v0.1.0`
+- **Version:** `v0.1.3`
 - **State:** `NON-FINAL`
 - **Release type:** `PRE-SEAL`
 - **Authority:** `NOT SEALED`
 - **Compatibility:** `NONE GUARANTEED`
-- **Repository release boundary:** `.verifrax/tags/v0.1.0.txt`
+- **Repository release boundary:** `.verifrax/tags/v0.1.3.txt`
 
 That means CORPIFORM is structurally legible and publicly inspectable, but it must still be treated as non-final until sealed authority activates it.
 
@@ -96,7 +96,7 @@ Start with these files and directories.
 ### Evidence boundary
 
 - `evidence/README.md`
-- `.verifrax/tags/v0.1.0.txt`
+- `.verifrax/tags/v0.1.3.txt`
 
 ---
 
@@ -156,7 +156,7 @@ The canonical evidence navigation root is:
 
 The explicit repository release declaration for the current version is:
 
-- `.verifrax/tags/v0.1.0.txt`
+- `.verifrax/tags/v0.1.3.txt`
 
 That release boundary records:
 
@@ -182,4 +182,4 @@ Use the security reporting path defined in:
 
 ## License
 
-MIT. See `LICENSE`.
+Apache 2.0. See `LICENSE`.
