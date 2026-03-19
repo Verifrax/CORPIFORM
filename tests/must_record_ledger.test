@@ -13,6 +13,7 @@ export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
 export EXECUTION_CUSTODIAN="test-custodian"
 
 mkdir -p ledger/receipts ledger/denials ledger/locks
+rm -f ledger/locks/cmd-valid-001.lock 2>/dev/null || true
 
 receipts_before=$(find ledger/receipts -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
 denials_before=$(find ledger/denials -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')

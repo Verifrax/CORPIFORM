@@ -16,29 +16,37 @@ if [[ ! -f "$SEAL_FILE" ]]; then
   exit 1
 fi
 
-VALID_FROM=$(jq -r '.time_window.valid_from' "$SEAL_FILE")
-VALID_UNTIL=$(jq -r '.time_window.valid_until' "$SEAL_FILE")
+VALID_FROM=$(jq -r ".valid_from" "$SEAL_FILE")
+VALID_UNTIL=$(jq -r ".valid_until" "$SEAL_FILE")
 
-if [[ -z "$VALID_FROM" || -z "$VALID_UNTIL" || "$VALID_FROM" == "null" || "$VALID_UNTIL" == "null" ]]; then
+if [[ -z "$VALID_FROM" || "$VALID_FROM" == "null" || -z "$VALID_UNTIL" || "$VALID_UNTIL" == "null" ]]; then
   echo "REFUSE: invalid time window in authority seal"
   exit 1
 fi
 
-NOW_UTC=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+python3 - "$VALID_FROM" "$VALID_UNTIL" <<'PY'
+import sys
+from datetime import datetime, timezone
 
-FROM_EPOCH=$(date -u -d "$VALID_FROM" +"%s")
-UNTIL_EPOCH=$(date -u -d "$VALID_UNTIL" +"%s")
-NOW_EPOCH=$(date -u -d "$NOW_UTC" +"%s")
+valid_from = sys.argv[1]
+valid_until = sys.argv[2]
 
-if (( NOW_EPOCH < FROM_EPOCH )); then
-  echo "REFUSE: authority not yet valid"
-  exit 1
-fi
+def parse_iso_z(value: str) -> datetime:
+    return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
 
-if (( NOW_EPOCH > UNTIL_EPOCH )); then
-  echo "REFUSE: authority expired"
-  exit 1
-fi
+now = datetime.now(timezone.utc)
+from_dt = parse_iso_z(valid_from)
+until_dt = parse_iso_z(valid_until)
 
-echo "AUTHORITY TIME WINDOW VERIFIED"
+if now < from_dt:
+    print("REFUSE: authority not yet valid")
+    raise SystemExit(1)
+
+if now > until_dt:
+    print("REFUSE: authority expired")
+    raise SystemExit(1)
+
+print("AUTHORITY TIME WINDOW VERIFIED")
+PY
+
 exit 0
