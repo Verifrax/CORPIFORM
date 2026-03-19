@@ -1,5 +1,17 @@
 # CORPIFORM
 
+![Version](https://img.shields.io/badge/version-v0.1.3-blue)
+![State](https://img.shields.io/badge/state-NON--FINAL-orange)
+![Release](https://img.shields.io/badge/release-PRE--SEAL-lightgrey)
+![Authority](https://img.shields.io/badge/authority-NOT--SEALED-red)
+![License](https://img.shields.io/badge/license-Apache%202.0-green)
+![Determinism](https://img.shields.io/badge/determinism-required-black)
+![Execution](https://img.shields.io/badge/execution-governed-purple)
+
+---
+
+## CORPIFORM
+
 Deterministic execution-control component for authority-gated institutional actions in the VERIFRAX stack.
 
 CORPIFORM is not an authority issuer and not a verification protocol.
@@ -9,14 +21,31 @@ It is the execution boundary that decides whether a permitted action may occur, 
 
 ## Current posture
 
-- **Version:** `v0.1.3`
-- **State:** `NON-FINAL`
-- **Release type:** `PRE-SEAL`
-- **Authority:** `NOT SEALED`
-- **Compatibility:** `NONE GUARANTEED`
-- **Repository release boundary:** `.verifrax/tags/v0.1.3.txt`
+* **Version:** `v0.1.3`
+* **State:** `NON-FINAL`
+* **Release type:** `PRE-SEAL`
+* **Authority:** `NOT SEALED`
+* **Compatibility:** `NONE GUARANTEED`
+* **Repository release boundary:** `.verifrax/tags/v0.1.3.txt`
 
-That means CORPIFORM is structurally legible and publicly inspectable, but it must still be treated as non-final until sealed authority activates it.
+This state means:
+
+* the system is structurally complete enough for inspection
+* execution semantics are defined and testable
+* authority activation has not yet occurred
+* no external dependency should assume stability or compatibility
+
+---
+
+## System role
+
+CORPIFORM is the execution layer in a three-part stack:
+
+* **AUCTORISEAL** → authority issuance
+* **CORPIFORM** → execution enforcement
+* **VERIFRAX** → verification and evidence
+
+CORPIFORM exists to convert *valid authority* into *bounded consequence*.
 
 ---
 
@@ -24,16 +53,23 @@ That means CORPIFORM is structurally legible and publicly inspectable, but it mu
 
 CORPIFORM is a controlled execution component with explicit surfaces for:
 
-- authority intake
-- execution gating
-- single-execution enforcement
-- refusal emission
-- receipt emission
-- revocation handling
-- ledger-visible consequence recording
-- body-scoped operational actions
+* authority intake and validation
+* execution gating
+* single-execution enforcement (replay resistance)
+* refusal emission
+* receipt emission
+* revocation handling
+* ledger-visible consequence recording
+* body-scoped operational actions
 
-It exists to ensure that execution consequence is bounded by explicit authority and explicit refusal semantics rather than ad hoc operator discretion.
+It enforces that execution occurs only under:
+
+* valid authority
+* valid scope
+* valid time window
+* valid custody
+* non-revoked state
+* non-replayed execution
 
 ---
 
@@ -41,145 +77,242 @@ It exists to ensure that execution consequence is bounded by explicit authority 
 
 CORPIFORM is not:
 
-- a general-purpose agent
-- an open-ended orchestration engine
-- an authority source
-- a substitute for AUCTORISEAL
-- a substitute for VERIFRAX
-- a guarantee of active execution in its current non-final state
+* a general-purpose agent
+* an orchestration engine
+* an authority source
+* a verification protocol
+* a policy authoring system
 
-If authority is missing, invalid, revoked, ambiguous, expired, or out of scope, CORPIFORM must refuse.
+It does not decide *what should happen*.
+It decides only *whether something is allowed to happen*.
 
 ---
 
 ## Canonical repository surfaces
 
-Start with these files and directories.
-
 ### Governing boundary
 
-- `STATUS.md`
-- `SCOPE.md`
-- `CONTRACT.md`
-- `AUTHORITY.md`
-- `FAILURE.md`
-- `DEATH.md`
-- `GOVERNANCE.md`
-- `SECURITY.md`
-- `VERSION.md`
+* `STATUS.md`
+* `SCOPE.md`
+* `CONTRACT.md`
+* `AUTHORITY.md`
+* `FAILURE.md`
+* `DEATH.md`
+* `GOVERNANCE.md`
+* `SECURITY.md`
+* `VERSION.md`
+
+These files define invariant constraints and failure semantics.
+
+---
 
 ### Execution boundary
 
-- `execution/`
-- `bodies/`
-- `seals/`
-- `revocation/`
-- `receipts/`
-- `denials/`
-- `ledger/`
+* `execution/`
+* `bodies/`
+* `seals/`
+* `revocation/`
+* `receipts/`
+* `denials/`
+* `ledger/`
+
+These surfaces implement the execution decision and output emission.
+
+---
 
 ### Verification and integration boundary
 
-- `interfaces/`
-- `integrations/auctoriseal/`
-- `integrations/verifrax/`
-- `id/TRUSTED_ROOTS/auctoriseal_roots.json`
+* `interfaces/`
+* `integrations/auctoriseal/`
+* `integrations/verifrax/`
+* `id/TRUSTED_ROOTS/auctoriseal_roots.json`
 
-### Adversarial and runtime boundary
+These define how CORPIFORM interacts with authority sources and verification systems.
 
-- `fixtures/`
-- `tests/`
-- `runtime/`
-- `tools/`
-- `observability/`
+---
+
+### Runtime and adversarial boundary
+
+* `fixtures/`
+* `tests/`
+* `runtime/`
+* `tools/`
+* `observability/`
+
+These surfaces expose execution behavior under normal and adversarial conditions.
+
+---
 
 ### Evidence boundary
 
-- `evidence/README.md`
-- `.verifrax/tags/v0.1.3.txt`
+* `evidence/README.md`
+* `.verifrax/tags/v0.1.3.txt`
+
+These surfaces define what is publicly recorded and inspectable.
 
 ---
 
 ## Execution model
 
-CORPIFORM separates action classes into explicit bodies:
+CORPIFORM separates execution into explicit **bodies**:
 
-- `deploy`
-- `mail`
-- `payment`
-- `publish`
+* `deploy`
+* `mail`
+* `payment`
+* `publish`
 
-Execution is intended to occur only when:
+Execution occurs only if all conditions pass:
 
-1. valid external authority is presented
-2. the requested action is inside the allowed body and scope
-3. time-window and custody checks pass
-4. replay protections pass
-5. revocation state does not block execution
+1. authority is present and valid
+2. scope matches requested action
+3. time window is valid
+4. custody is valid
+5. revocation state allows execution
+6. execution has not already occurred (execute-once)
 
-Otherwise the system must emit a governed refusal artifact instead of performing consequence.
+If any condition fails:
+
+→ execution MUST NOT occur
+→ a denial artifact MUST be emitted
 
 ---
 
-## Authority dependency
+## Deterministic refusal semantics
 
-CORPIFORM depends on externally grounded authority material.
+CORPIFORM enforces explicit refusal instead of silent failure.
 
-Published trust roots are recorded in:
+Refusal conditions include:
 
-- `id/TRUSTED_ROOTS/auctoriseal_roots.json`
+* missing authority
+* invalid authority
+* expired authority
+* revoked authority
+* scope mismatch
+* replay attempt
+* ambiguity in execution request
 
-Authority acquisition and integration surfaces are recorded in:
+Each refusal produces:
 
-- `integrations/auctoriseal/`
-
-State transitions and active authority posture are governed by AUCTORISEAL, not by local operator preference.
+* a structured denial artifact
+* a signed record (when configured)
+* a ledger-visible outcome
 
 ---
 
 ## Outputs
 
-CORPIFORM produces two primary governed result classes:
+CORPIFORM produces two canonical result classes:
 
-- **receipts** for permitted execution
-- **denials** for refused execution
+### Receipts
 
-Those outputs are expected to be signable, verifiable, and ledger-visible.
+* emitted when execution is permitted
+* bind:
+
+  * `command_id`
+  * `authority_seal_id`
+  * execution context
+  * timestamp
+  * outcome
+
+### Denials
+
+* emitted when execution is refused
+* bind:
+
+  * refusal reason
+  * evaluated authority state
+  * execution context
+
+Both outputs are designed to be:
+
+* deterministic
+* canonicalizable
+* hashable
+* signable
+* externally verifiable
+
+---
+
+## Authority dependency
+
+CORPIFORM depends on externally grounded authority.
+
+Trust roots are defined in:
+
+* `id/TRUSTED_ROOTS/auctoriseal_roots.json`
+
+Authority lifecycle is controlled by AUCTORISEAL.
+
+CORPIFORM does not mint authority and cannot override it.
+
+---
+
+## Replay resistance
+
+CORPIFORM enforces execute-once semantics:
+
+* each `command_id` may be executed at most once
+* subsequent attempts MUST be refused
+* prior execution MUST be detectable via receipt
+
+This property is critical for:
+
+* financial actions
+* publication integrity
+* irreversible operations
 
 ---
 
 ## Evidence and release boundary
 
-The canonical evidence navigation root is:
+Canonical evidence root:
 
-- `evidence/README.md`
+* `evidence/README.md`
 
-The explicit repository release declaration for the current version is:
+Release declaration:
 
-- `.verifrax/tags/v0.1.3.txt`
+* `.verifrax/tags/v0.1.3.txt`
 
-That release boundary records:
+This boundary records:
 
-- canonical repository head
-- recorded timestamp
-- non-final pre-seal posture
-- explicit compatibility boundary
+* repository state
+* release timestamp
+* non-final posture
 
-It is a release declaration only.
-It is not an authority seal and does not activate execution.
+It does not:
+
+* activate authority
+* guarantee execution
+* imply production readiness
 
 ---
 
 ## Security
 
-Do not report sensitive vulnerabilities publicly.
+Security issues must not be disclosed publicly.
 
-Use the security reporting path defined in:
+Follow:
 
-- `SECURITY.md`
+* `SECURITY.md`
 
 ---
 
 ## License
 
-Apache 2.0. See `LICENSE`.
+Apache License 2.0
+
+See `LICENSE`.
+
+---
+
+## Design constraint
+
+CORPIFORM must always satisfy:
+
+> No authority → no execution
+
+and
+
+> No ambiguity → no execution
+
+This constraint dominates all implementation details.
