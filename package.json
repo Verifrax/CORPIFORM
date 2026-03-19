@@ -1,0 +1,44 @@
+{
+  "name": "@verifrax/corpiform",
+  "version": "0.1.3",
+  "description": "Deterministic execution-control substrate for authority-gated actions in the Verifrax stack.",
+  "license": "Apache-2.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Verifrax/CORPIFORM.git"
+  },
+  "homepage": "https://github.com/Verifrax/CORPIFORM#readme",
+  "bugs": {
+    "url": "https://github.com/Verifrax/CORPIFORM/issues"
+  },
+  "files": [
+    "bin",
+    "execution",
+    "receipts",
+    "denials",
+    "revocation",
+    "seals",
+    "tools",
+    "README.md",
+    "LICENSE",
+    "PACKAGE_BOUNDARY.md"
+  ],
+  "keywords": [
+    "verifrax",
+    "corpiform",
+    "authority",
+    "execution",
+    "deterministic",
+    "receipt",
+    "denial",
+    "shell"
+  ],
+  "bin": {
+    "corpiform": "bin/corpiform"
+  },
+  "scripts": {
+    "test": "./bin/corpiform help >/dev/null",
+    "smoke": "./bin/corpiform help"
+  }
+}
