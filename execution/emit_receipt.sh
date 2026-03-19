@@ -18,7 +18,7 @@ COMMAND_ID=$(jq -r '.command_id' "$EXECUTION_COMMAND_PATH")
 BODY=$(jq -r '.body' "$EXECUTION_COMMAND_PATH")
 ACTION=$(jq -r '.action' "$EXECUTION_COMMAND_PATH")
 ADAPTER=$(jq -r '.adapter' "$EXECUTION_COMMAND_PATH")
-AUTHORITY_SEAL_ID=$(jq -r '.seal_id' "$AUTHORITY_SEAL_PATH")
+AUTHORITY_SEAL_ID=$(jq -r '.authority_seal_id' "$AUTHORITY_SEAL_PATH")
 
 TMP_RECEIPT=$(mktemp)
 
