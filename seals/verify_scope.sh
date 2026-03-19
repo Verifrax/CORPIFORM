@@ -17,16 +17,41 @@ if [[ ! -f "$SEAL_FILE" || ! -f "$COMMAND_FILE" ]]; then
   exit 1
 fi
 
-SEAL_RESOURCES=$(jq -r '.scope.resources[]' "$SEAL_FILE" | sort)
-CMD_RESOURCES=$(jq -r '.parameters.resources[]?' "$COMMAND_FILE" | sort)
+SEAL_BODY=$(jq -r ".scope.body" "$SEAL_FILE")
+SEAL_ACTION=$(jq -r ".scope.action" "$SEAL_FILE")
+SEAL_ADAPTER=$(jq -r ".scope.adapter" "$SEAL_FILE")
 
-if [[ -z "$SEAL_RESOURCES" ]]; then
-  echo "REFUSE: empty authority scope"
+CMD_BODY=$(jq -r ".body" "$COMMAND_FILE")
+CMD_ACTION=$(jq -r ".action" "$COMMAND_FILE")
+CMD_ADAPTER=$(jq -r ".adapter" "$COMMAND_FILE")
+
+if [[ -z "$SEAL_BODY" || "$SEAL_BODY" == "null" ]]; then
+  echo "REFUSE: missing scope body"
   exit 1
 fi
 
-if [[ "$SEAL_RESOURCES" != "$CMD_RESOURCES" ]]; then
-  echo "REFUSE: scope mismatch"
+if [[ -z "$SEAL_ACTION" || "$SEAL_ACTION" == "null" ]]; then
+  echo "REFUSE: missing scope action"
+  exit 1
+fi
+
+if [[ -z "$SEAL_ADAPTER" || "$SEAL_ADAPTER" == "null" ]]; then
+  echo "REFUSE: missing scope adapter"
+  exit 1
+fi
+
+if [[ "$SEAL_BODY" != "$CMD_BODY" ]]; then
+  echo "REFUSE: scope body mismatch"
+  exit 1
+fi
+
+if [[ "$SEAL_ACTION" != "$CMD_ACTION" ]]; then
+  echo "REFUSE: scope action mismatch"
+  exit 1
+fi
+
+if [[ "$SEAL_ADAPTER" != "$CMD_ADAPTER" ]]; then
+  echo "REFUSE: scope adapter mismatch"
   exit 1
 fi
 

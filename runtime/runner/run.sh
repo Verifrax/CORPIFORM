@@ -15,22 +15,41 @@ set -euo pipefail
 # Canonical denial emission hook
 export DENIAL_EMIT_SCRIPT="${DENIAL_EMIT_SCRIPT:-denials/emit.sh}"
 
-# Ensure system is not dead or frozen
-if grep -q "DEAD" STATUS.md; then
-  echo "REFUSE: system is dead"
+CURRENT_STATE="$(
+  python3 - <<'PY'
+from pathlib import Path
+
+for line in Path("STATUS.md").read_text().splitlines():
+    if line.startswith("**CURRENT STATE:**"):
+        print(line.split(":", 1)[1].replace(chr(96), "").strip())
+        break
+PY
+)"
+
+if [[ -z "${CURRENT_STATE:-}" ]]; then
+  echo "REFUSE: current state unresolved"
   if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
-    "$DENIAL_EMIT_SCRIPT" "SYSTEM_DEAD" || true
+    "$DENIAL_EMIT_SCRIPT" "STATUS_STATE_UNRESOLVED" || true
   fi
   exit 1
 fi
 
-if grep -q "FROZEN" STATUS.md; then
-  echo "REFUSE: system is frozen"
-  if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
-    "$DENIAL_EMIT_SCRIPT" "SYSTEM_FROZEN" || true
-  fi
-  exit 1
-fi
+case "$CURRENT_STATE" in
+  DEAD)
+    echo "REFUSE: system is dead"
+    if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+      "$DENIAL_EMIT_SCRIPT" "SYSTEM_DEAD" || true
+    fi
+    exit 1
+    ;;
+  FROZEN)
+    echo "REFUSE: system is frozen"
+    if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+      "$DENIAL_EMIT_SCRIPT" "SYSTEM_FROZEN" || true
+    fi
+    exit 1
+    ;;
+esac
 
 # Authority + policy gate
 execution/gate.sh

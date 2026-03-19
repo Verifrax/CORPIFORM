@@ -1,5 +1,5 @@
 {
-  "issuer": "auctoriseal:test-root",
+  "issuer": "root.primary",
   "revocation_id": "revocation-001",
   "authority_seal_id": "seal-revoked-001",
   "reason": "TEST_REVOCATION",

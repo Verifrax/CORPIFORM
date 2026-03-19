@@ -10,13 +10,13 @@ export CORPIFORM_VERSION="v0.test"
 export DENIAL_SIGNING_KEY="fixtures/keys/denial.key"
 export EXECUTION_CUSTODIAN="test-custodian"
 
-export EXECUTION_COMMAND_PATH="fixtures/valid_authority/command.json"
-export AUTHORITY_SEAL_PATH="fixtures/valid_authority/seal.json"
-export REVOCATION_PATH="fixtures/revocations/revocation.json"
+export EXECUTION_COMMAND_PATH="fixtures/revoked_authority/command.json"
+export AUTHORITY_SEAL_PATH="fixtures/revoked_authority/seal.json"
+export REVOCATION_PATH="fixtures/revoked_authority/revocation.record.json"
 
 mkdir -p ledger/revocations ledger/denials ledger/locks
+rm -f ledger/locks/cmd-revoked-001.lock 2>/dev/null || true
 
-# Apply revocation (idempotent for test)
 if ! revocation/verify.sh >/dev/null 2>&1; then
   echo "FAIL: revocation fixture did not verify"
   exit 1
@@ -27,19 +27,17 @@ if ! revocation/apply.sh >/dev/null 2>&1; then
   exit 1
 fi
 
-# Ensure seal_id is present in revocation ledger
-SEAL_ID=$(jq -r '.seal_id' "$AUTHORITY_SEAL_PATH")
+SEAL_ID=$(jq -r .authority_seal_id "$AUTHORITY_SEAL_PATH")
 if [[ -z "$SEAL_ID" || "$SEAL_ID" == "null" ]]; then
-  echo "FAIL: fixture seal_id missing"
+  echo "FAIL: fixture authority_seal_id missing"
   exit 1
 fi
 
 if ! grep -R "\"authority_seal_id\"[[:space:]]*:[[:space:]]*\"${SEAL_ID}\"" ledger/revocations >/dev/null 2>&1; then
-  echo "FAIL: revocation ledger does not reference seal_id"
+  echo "FAIL: revocation ledger does not reference authority_seal_id"
   exit 1
 fi
 
-# Attempt execution: MUST be refused
 if runtime/runner/run.sh >/dev/null 2>&1; then
   echo "FAIL: execution succeeded with revoked authority"
   exit 1
