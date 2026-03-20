@@ -33,7 +33,7 @@ CORPIFORM enforces execution under authority.
 
 ## Current posture
 
-* Version: **v0.1.3**
+* Version: **v0.1.4**
 * State: **PRE-FINAL EXECUTION SURFACE**
 * Release type: **PUBLIC PRE-SEAL**
 * Authority model: **EXTERNAL (AUCTORISEAL-GOVERNED)**
