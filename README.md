@@ -45,13 +45,14 @@ CORPIFORM enforces execution under authority.
 
 ## Verified execution boundary
 
-Bound to:
+This release is bound to:
 
-* VERIFRAX: **artifact-0004**
-* CORPIFORM commit: **f257493**
-* Receipt: **EE07B689-F1BF-4518-B49C-C973CB178029**
+* VERIFRAX artifact: **artifact-0004**
+* CORPIFORM release-boundary commit: **40047fb**
+* Package: **@verifrax/corpiform@0.1.4**
+* Recorded execution receipt: **EE07B689-F1BF-4518-B49C-C973CB178029**
 
-This is the only asserted compatibility boundary.
+This boundary defines the only compatibility guarantee currently asserted.
 
 ---
 
