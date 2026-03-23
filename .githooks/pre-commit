@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if git diff --cached --name-only | grep -E "\\.key$" >/dev/null 2>&1; then
+  echo "Refusing commit: .key files are not allowed in the repository."
+  exit 1
+fi
