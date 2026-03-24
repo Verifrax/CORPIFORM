@@ -14,12 +14,12 @@ Its repository state is publicly inspectable, but it is **not yet an active auth
 
 Current declared posture:
 
-- **Version:** `v0.1.0`
+- **Version:** `v0.1.4`
 - **State:** `NON-FINAL`
 - **Release type:** `PRE-SEAL`
 - **Authority:** `NOT SEALED`
 - **Compatibility:** `NONE GUARANTEED`
-- **Repository release boundary:** `.verifrax/tags/v0.1.0.txt`
+- **Repository release boundary:** `.verifrax/tags/v0.1.4.txt`
 
 That means CORPIFORM may be inspected, challenged, and integrated as a published component surface, but it must still be treated as non-authoritative for live execution until valid AUCTORISEAL authority activates it.
 
@@ -109,7 +109,7 @@ Published trust intake surfaces include:
 
 The repository release declaration recorded in:
 
-- `.verifrax/tags/v0.1.0.txt`
+- `.verifrax/tags/v0.1.4.txt`
 
 is a **release-boundary surface only**.
 

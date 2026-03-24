@@ -11,12 +11,12 @@ CORPIFORM is currently published as a **non-final, pre-seal execution-control co
 
 Current declared posture:
 
-- **Version:** `v0.1.0`
+- **Version:** `v0.1.4`
 - **State:** `NON-FINAL`
 - **Release type:** `PRE-SEAL`
 - **Authority:** `NOT SEALED`
 - **Compatibility:** `NONE GUARANTEED`
-- **Repository release boundary:** `.verifrax/tags/v0.1.0.txt`
+- **Repository release boundary:** `.verifrax/tags/v0.1.4.txt`
 
 That means CORPIFORM publishes an inspectable scope boundary, but repository publication alone does **not** authorize live consequence.
 
@@ -210,7 +210,7 @@ Valid authority determines whether any specific execution may happen inside it.
 
 The repository declaration recorded in:
 
-- `.verifrax/tags/v0.1.0.txt`
+- `.verifrax/tags/v0.1.4.txt`
 
 is a **release-boundary surface only**.
 
