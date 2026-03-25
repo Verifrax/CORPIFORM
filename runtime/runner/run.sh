@@ -1,6 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+EARLY_CURRENT_STATE="$(
+  awk '{
+    line=$0
+    gsub(/\*\*|`/, "", line)
+    if (index(line, "CURRENT STATE:") == 1) {
+      sub(/^CURRENT STATE:[[:space:]]*/, "", line)
+      print line
+      exit
+    }
+  }' STATUS.md
+)"
+
+case "$EARLY_CURRENT_STATE" in
+  ACTIVE)
+    ;;
+  DEAD)
+    echo "REFUSE: system is dead"
+    exit 1
+    ;;
+  FROZEN)
+    echo "REFUSE: system is frozen"
+    exit 1
+    ;;
+  INACTIVE|"NON-FINAL / INACTIVE"|"NON_FINAL / INACTIVE"|"NON-FINAL"|"INACTIVE / NON-FINAL"|"NON-FINAL/INACTIVE")
+    echo "REFUSE: system is inactive"
+    exit 1
+    ;;
+esac
+
 # CORPIFORM RUNTIME RUNNER
 # Canonical, single-entry execution path. No branching. No retries.
 
@@ -16,14 +45,15 @@ set -euo pipefail
 export DENIAL_EMIT_SCRIPT="${DENIAL_EMIT_SCRIPT:-denials/emit.sh}"
 
 CURRENT_STATE="$(
-  python3 - <<'PY'
-from pathlib import Path
-
-for line in Path("STATUS.md").read_text().splitlines():
-    if line.startswith("**CURRENT STATE:**"):
-        print(line.split(":", 1)[1].replace(chr(96), "").strip())
-        break
-PY
+  awk '{
+    line=$0
+    gsub(/\*\*|`/, "", line)
+    if (index(line, "CURRENT STATE:") == 1) {
+      sub(/^CURRENT STATE:[[:space:]]*/, "", line)
+      print line
+      exit
+    }
+  }' STATUS.md
 )"
 
 if [[ -z "${CURRENT_STATE:-}" ]]; then
@@ -35,6 +65,8 @@ if [[ -z "${CURRENT_STATE:-}" ]]; then
 fi
 
 case "$CURRENT_STATE" in
+  ACTIVE)
+    ;;
   DEAD)
     echo "REFUSE: system is dead"
     if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
@@ -46,6 +78,20 @@ case "$CURRENT_STATE" in
     echo "REFUSE: system is frozen"
     if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
       "$DENIAL_EMIT_SCRIPT" "SYSTEM_FROZEN" || true
+    fi
+    exit 1
+    ;;
+  INACTIVE|"NON-FINAL / INACTIVE"|"NON_FINAL / INACTIVE"|"NON-FINAL"|"INACTIVE / NON-FINAL")
+    echo "REFUSE: system is inactive"
+    if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+      "$DENIAL_EMIT_SCRIPT" "SYSTEM_INACTIVE" || true
+    fi
+    exit 1
+    ;;
+  *)
+    echo "REFUSE: unsupported current state: $CURRENT_STATE"
+    if [[ -x "$DENIAL_EMIT_SCRIPT" ]]; then
+      "$DENIAL_EMIT_SCRIPT" "STATUS_STATE_UNSUPPORTED" || true
     fi
     exit 1
     ;;
