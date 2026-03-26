@@ -1,18 +1,28 @@
 name: Identity
+
 on:
   pull_request:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
-  Identity:
+  identity:
+    name: Identity
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: identity
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify governed identity surface
         shell: bash
         run: |
           set -euo pipefail
-          echo "identity: ok"
+          chmod +x ci/check_identity.sh
+          ci/check_identity.sh
