@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# VERIFY AUTHORITY SCOPE
-# Ensures the authority seal scope matches the execution command scope exactly.
-
 SEAL_FILE="${AUTHORITY_SEAL_PATH:-}"
 COMMAND_FILE="${EXECUTION_COMMAND_PATH:-}"
 
@@ -17,43 +14,16 @@ if [[ ! -f "$SEAL_FILE" || ! -f "$COMMAND_FILE" ]]; then
   exit 1
 fi
 
-SEAL_BODY=$(jq -r ".scope.body" "$SEAL_FILE")
-SEAL_ACTION=$(jq -r ".scope.action" "$SEAL_FILE")
-SEAL_ADAPTER=$(jq -r ".scope.adapter" "$SEAL_FILE")
-
 CMD_BODY=$(jq -r ".body" "$COMMAND_FILE")
 CMD_ACTION=$(jq -r ".action" "$COMMAND_FILE")
 CMD_ADAPTER=$(jq -r ".adapter" "$COMMAND_FILE")
 
-if [[ -z "$SEAL_BODY" || "$SEAL_BODY" == "null" ]]; then
-  echo "REFUSE: missing scope body"
-  exit 1
-fi
-
-if [[ -z "$SEAL_ACTION" || "$SEAL_ACTION" == "null" ]]; then
-  echo "REFUSE: missing scope action"
-  exit 1
-fi
-
-if [[ -z "$SEAL_ADAPTER" || "$SEAL_ADAPTER" == "null" ]]; then
-  echo "REFUSE: missing scope adapter"
-  exit 1
-fi
-
-if [[ "$SEAL_BODY" != "$CMD_BODY" ]]; then
-  echo "REFUSE: scope body mismatch"
-  exit 1
-fi
-
-if [[ "$SEAL_ACTION" != "$CMD_ACTION" ]]; then
-  echo "REFUSE: scope action mismatch"
-  exit 1
-fi
-
-if [[ "$SEAL_ADAPTER" != "$CMD_ADAPTER" ]]; then
-  echo "REFUSE: scope adapter mismatch"
-  exit 1
-fi
+for scope_entry in "body:${CMD_BODY}" "action:${CMD_ACTION}" "adapter:${CMD_ADAPTER}"; do
+  if ! jq -e --arg entry "$scope_entry" ".scope | index(\$entry) != null" "$SEAL_FILE" >/dev/null; then
+    echo "REFUSE: scope mismatch"
+    exit 1
+  fi
+done
 
 echo "AUTHORITY SCOPE VERIFIED"
 exit 0

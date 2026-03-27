@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# VERIFY AUTHORITY CUSTODY
-# Ensures the execution is performed by the custodian explicitly named
-# in the authority seal.
-
 SEAL_FILE="${AUTHORITY_SEAL_PATH:-}"
 CUSTODIAN_IDENTITY="${EXECUTION_CUSTODIAN:-}"
 
@@ -18,14 +14,14 @@ if [[ ! -f "$SEAL_FILE" ]]; then
   exit 1
 fi
 
-SEAL_CUSTODIAN=$(jq -r '.custodian' "$SEAL_FILE")
+ISSUED_TO=$(jq -r ".issued_to" "$SEAL_FILE")
 
-if [[ -z "$SEAL_CUSTODIAN" || "$SEAL_CUSTODIAN" == "null" ]]; then
-  echo "REFUSE: missing custodian in authority seal"
+if [[ -z "$ISSUED_TO" || "$ISSUED_TO" == "null" ]]; then
+  echo "REFUSE: missing issued_to"
   exit 1
 fi
 
-if [[ "$SEAL_CUSTODIAN" != "$CUSTODIAN_IDENTITY" ]]; then
+if [[ "$ISSUED_TO" != "$CUSTODIAN_IDENTITY" ]]; then
   echo "REFUSE: custodian mismatch"
   exit 1
 fi

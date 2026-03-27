@@ -4,66 +4,66 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "issuer",
+    "issued_by",
     "seal_id",
-    "body",
-    "action",
+    "issued_to",
     "scope",
-    "custodian",
-    "time_window",
-    "signature"
+    "constraints",
+    "issued_at",
+    "expires_at",
+    "protocol",
+    "status"
   ],
   "properties": {
-    "issuer": {
+    "issued_by": {
       "type": "string",
-      "description": "Authority issuer identifier (must match trusted roots)"
+      "description": "Authority issuer identifier recognized through AUCTORISEAL trusted roots."
     },
     "seal_id": {
       "type": "string",
-      "description": "Globally unique authority seal identifier"
+      "description": "Globally unique authority seal identifier."
     },
-    "body": {
+    "issued_to": {
       "type": "string",
-      "description": "Target CORPIFORM body authorized to execute"
-    },
-    "action": {
-      "type": "string",
-      "description": "Authorized action class"
+      "description": "Subject receiving the authority seal."
     },
     "scope": {
+      "type": "array",
+      "description": "Canonical scope entries emitted by AUCTORISEAL.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "constraints": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["resources"],
-      "properties": {
-        "resources": {
-          "type": "array",
-          "items": { "type": "string" },
-          "minItems": 1
-        }
+      "description": "Additional limiting constraints emitted by AUCTORISEAL.",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean", "null"]
       }
     },
-    "custodian": {
-      "type": "string",
-      "description": "Named responsible custodian"
+    "issued_at": {
+      "type": "integer",
+      "description": "Unix epoch timestamp in milliseconds when the seal was issued."
     },
-    "time_window": {
+    "expires_at": {
+      "type": ["integer", "null"],
+      "description": "Optional expiration timestamp in milliseconds."
+    },
+    "protocol": {
+      "type": "integer",
+      "description": "Authority protocol version."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "revoked"],
+      "description": "Current seal status."
+    },
+    "metadata": {
       "type": "object",
-      "additionalProperties": false,
-      "required": ["valid_from", "valid_until"],
-      "properties": {
-        "valid_from": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "valid_until": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "signature": {
-      "type": "string",
-      "description": "Cryptographic signature of the authority issuer"
+      "description": "Non-normative metadata.",
+      "additionalProperties": true
     }
   }
 }
