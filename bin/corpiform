@@ -12,6 +12,7 @@ Usage:
   corpiform help
   corpiform doctor
   corpiform inspect
+  corpiform execute
   corpiform freeze
   corpiform kill
   corpiform rotate-keys
@@ -20,6 +21,7 @@ Commands:
   help         Show this help surface
   doctor       Run non-invasive integrity checks
   inspect      Print current system inspection data
+  execute      Run the canonical governed execution path
   freeze       Permanently freeze future execution
   kill         Permanently terminate the system
   rotate-keys  Record signing-key rotation event
@@ -36,6 +38,9 @@ USAGE
     ;;
   inspect)
     exec tools/inspect.sh
+    ;;
+  execute)
+    exec runtime/runner/run.sh
     ;;
   freeze)
     exec tools/freeze.sh
