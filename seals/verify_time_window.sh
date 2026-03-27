@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# VERIFY AUTHORITY TIME WINDOW
-# Ensures current time is within the authority seal validity window.
-
 SEAL_FILE="${AUTHORITY_SEAL_PATH:-}"
 
 if [[ -z "$SEAL_FILE" ]]; then
@@ -16,33 +13,27 @@ if [[ ! -f "$SEAL_FILE" ]]; then
   exit 1
 fi
 
-VALID_FROM=$(jq -r ".valid_from" "$SEAL_FILE")
-VALID_UNTIL=$(jq -r ".valid_until" "$SEAL_FILE")
+ISSUED_AT=$(jq -r ".issued_at" "$SEAL_FILE")
+EXPIRES_AT=$(jq -r ".expires_at" "$SEAL_FILE")
 
-if [[ -z "$VALID_FROM" || "$VALID_FROM" == "null" || -z "$VALID_UNTIL" || "$VALID_UNTIL" == "null" ]]; then
-  echo "REFUSE: invalid time window in authority seal"
+if [[ -z "$ISSUED_AT" || "$ISSUED_AT" == "null" ]]; then
+  echo "REFUSE: missing issued_at"
   exit 1
 fi
 
-python3 - "$VALID_FROM" "$VALID_UNTIL" <<'PY'
-import sys
-from datetime import datetime, timezone
+python3 - "$ISSUED_AT" "$EXPIRES_AT" <<'PY'
+import sys, time
 
-valid_from = sys.argv[1]
-valid_until = sys.argv[2]
+issued_at = int(sys.argv[1])
+expires_raw = sys.argv[2]
+expires_at = None if expires_raw == "null" else int(expires_raw)
+now_ms = int(time.time() * 1000)
 
-def parse_iso_z(value: str) -> datetime:
-    return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-
-now = datetime.now(timezone.utc)
-from_dt = parse_iso_z(valid_from)
-until_dt = parse_iso_z(valid_until)
-
-if now < from_dt:
+if now_ms < issued_at:
     print("REFUSE: authority not yet valid")
     raise SystemExit(1)
 
-if now > until_dt:
+if expires_at is not None and now_ms > expires_at:
     print("REFUSE: authority expired")
     raise SystemExit(1)
 

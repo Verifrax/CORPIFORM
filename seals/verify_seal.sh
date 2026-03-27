@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# VERIFY AUTHORITY SEAL
-# Verifies cryptographic validity and issuer trust of the authority seal.
-
 SEAL_FILE="${AUTHORITY_SEAL_PATH:-}"
 
 if [[ -z "$SEAL_FILE" ]]; then
@@ -21,16 +18,22 @@ if [[ ! -s "$SEAL_FILE" ]]; then
   exit 1
 fi
 
-ISSUER=$(jq -r '.issuer' "$SEAL_FILE")
-SIGNATURE=$(jq -r '.signature' "$SEAL_FILE")
+ISSUER=$(jq -r ".issued_by" "$SEAL_FILE")
+SEAL_ID=$(jq -r ".seal_id" "$SEAL_FILE")
+STATUS=$(jq -r ".status" "$SEAL_FILE")
 
 if [[ -z "$ISSUER" || "$ISSUER" == "null" ]]; then
-  echo "REFUSE: missing issuer"
+  echo "REFUSE: missing issued_by"
   exit 1
 fi
 
-if [[ -z "$SIGNATURE" || "$SIGNATURE" == "null" ]]; then
-  echo "REFUSE: missing signature"
+if [[ -z "$SEAL_ID" || "$SEAL_ID" == "null" ]]; then
+  echo "REFUSE: missing seal_id"
+  exit 1
+fi
+
+if [[ "$STATUS" != "active" ]]; then
+  echo "REFUSE: authority seal not active"
   exit 1
 fi
 
@@ -41,7 +44,7 @@ if [[ ! -f "$TRUSTED_ROOTS" ]]; then
   exit 1
 fi
 
-ROOT_MATCH=$(jq --arg issuer "$ISSUER" '.trusted_roots[] | select(.name == $issuer)' "$TRUSTED_ROOTS")
+ROOT_MATCH=$(jq --arg issuer "$ISSUER" ".trusted_roots[] | select(.name == \$issuer and .status == \"ACTIVE\")" "$TRUSTED_ROOTS")
 
 if [[ -z "$ROOT_MATCH" ]]; then
   echo "REFUSE: issuer not trusted"
