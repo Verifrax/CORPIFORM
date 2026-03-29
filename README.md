@@ -1,6 +1,24 @@
 # CORPIFORM
 
+![License](https://img.shields.io/badge/license-Apache--2.0-blue)
+![Role](https://img.shields.io/badge/role-runtime%20receipt%20surface-111111)
+![npm](https://img.shields.io/npm/v/@verifrax/corpiform)
+![CI](https://github.com/Verifrax/CORPIFORM/actions/workflows/ci.yml/badge.svg?branch=main)
+![Identity](https://github.com/Verifrax/CORPIFORM/actions/workflows/identity.yml/badge.svg?branch=main)
+![Determinism](https://github.com/Verifrax/CORPIFORM/actions/workflows/determinism-check.yml/badge.svg?branch=main)
+![Deploy](https://github.com/Verifrax/CORPIFORM/actions/workflows/pages.yml/badge.svg?branch=main)
+![Host](https://img.shields.io/badge/host-corpiform.verifrax.net-1f6feb)
+
 Authority-governed execution and receipt surface for the governed Verifrax system.
+
+Current release identity:
+
+* Version: **v0.1.4**
+* State: **PRE-FINAL EXECUTION SURFACE**
+* Release type: **PUBLIC PRE-SEAL**
+* Authority model: **EXTERNAL (AUCTORISEAL-GOVERNED)**
+* Determinism: **REQUIRED**
+* Replay: **FORBIDDEN (ENFORCED BY RECEIPT)**
 
 ## Status
 
