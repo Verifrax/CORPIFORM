@@ -19,6 +19,7 @@ Current release identity:
 * Authority model: **EXTERNAL (AUCTORISEAL-GOVERNED)**
 * Determinism: **REQUIRED**
 * Replay: **FORBIDDEN (ENFORCED BY RECEIPT)**
+* Compatibility: **GUARANTEED WITHIN RECORDED EXECUTION BOUNDARY (artifact-0004)**
 
 ## Status
 
