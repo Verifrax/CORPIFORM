@@ -5,17 +5,36 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>CORPIFORM Runtime Reference</title>
   <meta name="description" content="CORPIFORM runtime reference surface for corpiform.verifrax.net.">
+  <style>
+    @import url("./surface-system/shell/base.css");
+  </style>
 </head>
 <body>
-  <main>
-    <h1>CORPIFORM Runtime Reference</h1>
-    <p>Runtime reference only.</p>
-    <ul>
-      <li>Role: runtime reference surface</li>
-      <li>Execution host: api.verifrax.net</li>
-      <li>Authority source: auctoriseal.verifrax.net</li>
-      <li>Verification surface: verify.verifrax.net</li>
-    </ul>
+  <main class="surface stack">
+    <div class="surface-id">VERIFRAX / runtime</div>
+    <h1 class="surface-title">CORPIFORM Runtime Reference</h1>
+    <p class="surface-role">Runtime reference surface.</p>
+    <p class="surface-boundary">This surface describes governed runtime reference only. It does not issue authority, publish proof, or accept intake.</p>
+
+    <section class="panel">
+      <h2>Runtime boundary</h2>
+      <dl class="kv">
+        <dt>Role</dt><dd>Runtime reference surface</dd>
+        <dt>Execution host</dt><dd><a href="https://api.verifrax.net/">api.verifrax.net</a></dd>
+        <dt>Authority source</dt><dd><a href="https://auctoriseal.verifrax.net/">auctoriseal.verifrax.net</a></dd>
+        <dt>Verification surface</dt><dd><a href="https://verify.verifrax.net/">verify.verifrax.net</a></dd>
+      </dl>
+    </section>
+
+    <section class="panel">
+      <h2>Next valid actions</h2>
+      <div class="links">
+        <a href="https://api.verifrax.net/">Open execution host</a>
+        <a href="https://auctoriseal.verifrax.net/">Open authority surface</a>
+        <a href="https://verify.verifrax.net/">Open verifier</a>
+        <a href="https://docs.verifrax.net/">Open docs</a>
+      </div>
+    </section>
   </main>
 </body>
 </html>
