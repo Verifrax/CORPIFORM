@@ -1,0 +1,21 @@
+{
+  "host": "https://corpiform.verifrax.net",
+  "repo": "CORPIFORM",
+  "hostClass": "reference",
+  "role": "runtime",
+  "title": "CORPIFORM",
+  "description": "Governed execution and receipt runtime boundary for VERIFRAX.",
+  "deployMode": "preview-only",
+  "adjacentHosts": {
+    "Execution": "https://api.verifrax.net",
+    "Proof publication": "https://proof.verifrax.net",
+    "Verification": "https://verify.verifrax.net",
+    "Authority": "https://auctoriseal.verifrax.net",
+    "Runtime reference": "https://corpiform.verifrax.net",
+    "Enforcement reference": "https://cicullis.verifrax.net",
+    "Seal archive": "https://sigillarium.verifrax.net",
+    "Intake": "https://apply.verifrax.net",
+    "Documentation": "https://docs.verifrax.net",
+    "Status": "https://status.verifrax.net"
+  }
+}
