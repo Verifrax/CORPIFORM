@@ -32,8 +32,10 @@ jobs:
           mkdir -p dist
           cp CNAME dist/CNAME
           cp index.html dist/index.html
+          cp 404.html dist/404.html
           cp -R surface-system dist/surface-system
-          cp 404.html dist/404.html\n          test -f dist/index.html\n          test -f dist/404.html
+          test -f dist/index.html
+          test -f dist/404.html
           test -f dist/CNAME
           test -f dist/surface-system/shell/base.css
           grep -Fx "corpiform.verifrax.net" dist/CNAME
