@@ -9,7 +9,7 @@
 ![Deploy](https://github.com/Verifrax/CORPIFORM/actions/workflows/pages.yml/badge.svg?branch=main)
 ![Host](https://img.shields.io/badge/host-corpiform.verifrax.net-1f6feb)
 
-Authority-governed execution and receipt surface for the governed Verifrax system.
+CORPIFORM is the Verifrax governed-execution boundary: the public surface that consumes recorded authority, admits or refuses bounded execution, and emits deterministic receipts without becoming constitutional law, canonical world-state, reconciliation, sovereign cognition, authority issuance, verification, proof publication, or intake.
 
 Current release identity:
 
@@ -50,50 +50,56 @@ This repository is part of the VERIFRAX proof perimeter.
 * Current repository posture: public pre-seal execution surface
 * License: Apache License Version 2.0
 
-## One-sentence role
+## Boundary
 
-CORPIFORM consumes recorded authority, admits or refuses bounded execution, and emits deterministic receipts that VERIFRAX and public verifier surfaces can inspect without treating execution itself as truth.
+This repository owns governed execution and deterministic receipt emission only.
 
-## What this repository is
+Execution here means bounded consequence under externally grounded authority.
+Receipt emission here means deterministic runtime evidence of admitted or refused execution.
 
-CORPIFORM is the execution layer of the Verifrax stack.
+It does not author constitutional law.
+It does not hold canonical world-state.
+It does not perform reconciliation.
+It does not perform sovereign cognition.
+It does not issue authority objects.
+It does not verify truth.
+It does not publish proof as proof authority.
+It does not operate intake.
+It does not replace adjacent sovereign boundaries.
 
-It exists to provide:
+## What it does
 
-* authority-gated execution admission
-* deterministic refusal behavior
-* execute-once and replay-resistant runtime control
-* receipt emission for governed execution
-* explicit runtime boundary between authority, execution, and verification
-* inspectable execution semantics for the recorded artifact chain
+- consumes recorded authority
+- admits or refuses bounded execution
+- emits deterministic receipts for governed runtime actions
+- enforces execute-once and replay-resistant runtime posture
+- preserves a clean runtime boundary between authority, execution, and verification
+- exposes inspectable execution semantics inside the artifact chain
 
-This repository is where authority becomes bounded consequence.
+## What it does not do
 
-## What this repository is not
+- not constitutional doctrine; that belongs to SYNTAGMARIUM
+- not canonical world-state; that belongs to ORBISTIUM
+- not reconciliation or repair; that belongs to CONSONORIUM
+- not sovereign cognition; that belongs to TACHYRIUM
+- not authority issuance; that belongs to AUCTORISEAL
+- not public verification; that belongs to VERIFRAX-verify
+- not proof publication; that belongs to proof
+- not intake; that belongs to apply
+- not terminal recognition; that belongs to ANAGNORIUM
+- not terminal recourse; that belongs to REGRESSORIUM
 
-This repository is not:
+## Adjacent sovereign surfaces
 
-* the authored protocol repository
-* the authority issuance repository
-* the derived specification publication surface
-* the public proof publication surface
-* the public verifier UI
-* the intake surface
-* the commercial landing surface
-* a substitute for VERIFRAX evidence judgment
-* a source of authority minting
-
-CORPIFORM does not:
-
-* issue authority objects
-* decide normative truth on its own
-* replace VERIFRAX verification
-* replace public verifier inspection
-* act as marketing or docs fallback
-
-Execution here is permitted consequence, not upstream truth.
-
-## Stack position
+- `AUCTORISEAL` defines authority issuance and authority reference
+- `VERIFRAX` defines the evidence root, artifact chain, and verification boundary
+- `VERIFRAX-verify` defines the public verification surface
+- `proof` defines public proof publication
+- `apply` defines intake
+- `SYNTAGMARIUM` defines constitutional law and doctrine
+- `ORBISTIUM` defines canonical world-state
+- `CONSONORIUM` defines reconciliation / repair / projection
+- `TACHYRIUM` defines bounded sovereign cognition
 
 The governed path reads in this order:
 
@@ -104,23 +110,6 @@ The governed path reads in this order:
 5. `VERIFRAX-verify` — public verification surface
 
 CORPIFORM sits after authority issuance and before evidence judgment.
-
-## Authority dependency
-
-CORPIFORM requires externally grounded authority.
-
-The required authority direction across the governed system is:
-
-* VERIFRAX authors normative source material.
-* VERIFRAX-SPEC publishes derived specification artifacts from VERIFRAX.
-* Derived artifacts are not upstream authority.
-* Governance authority is external and bound through AUCTORISEAL plus the governed repo set in `.github`.
-
-CORPIFORM must therefore remain authority-dependent.
-
-It may consume authority.
-It may not mint authority.
-It may not override authority.
 
 ## Public host ownership
 
@@ -139,211 +128,69 @@ It must not become:
 * docs mirror
 * commercial landing
 
-If a second live execution host exists, this README must say so explicitly. Otherwise CORPIFORM remains runtime/reference only while `api.verifrax.net` remains the sole execution surface.
+## Public surface
 
-## Package surface
+The public surface of this repository is its repository identity, README boundary, package surface, host surface, and any explicitly published execution-reference materials carried by this repository.
 
-Package identity for this repository is:
+Publication here is not doctrine.
+Publication here is not state.
+Publication here is not reconciliation.
+Publication here is not cognition.
+Publication here is not authority issuance.
+Publication here is not verification.
+Publication here is not proof publication.
 
-* npm package: `@verifrax/corpiform`
-* repository: `Verifrax/CORPIFORM`
+## Package / host / repo truth
 
-Any version, tag, README status line, release note, and evidence reference must agree exactly.
+Repository truth for CORPIFORM lives in this repository.
 
-This README must not imply broader compatibility than the recorded execution boundary proves.
+Package distribution for this surface is:
 
-## Execution model
+* `@verifrax/corpiform`
 
-CORPIFORM exists to turn a valid authority state into either:
+Host presentation, package distribution, and repository truth are related but not interchangeable.
+Repository boundary still controls role truth here.
 
-* permitted execution with receipt emission
-* explicit refusal with deterministic refusal output
+## Execution meaning in-system
 
-Execution is allowed only when required runtime conditions hold, including at minimum:
+Execution in-system means the stack can point to CORPIFORM and say that a bounded action was admitted or refused under externally grounded authority and produced a deterministic receipt inside the governed runtime boundary.
 
-* authority presence
-* authority validity
-* scope match
-* admissible runtime boundary
-* non-revoked state
-* non-replayed execution state
+Execution here consumes authority.
+Execution here does not mint authority.
 
-If those conditions fail, execution must not occur.
+That does not by itself mean:
 
-A refusal is not a soft warning. It is the runtime result.
+- the result became constitutional law
+- the result became canonical world-state
+- the result was verified as truth
+- the result replaced proof publication
+- the result replaced public verifier inspection
+- the result was reconciled
+- the result was cognitively derived by TACHYRIUM
 
-## Receipts and refusals
-
-The load-bearing runtime outputs are:
-
-### Receipts
-
-Receipts bind the admitted execution to a bounded record that downstream evidence and verifier surfaces can inspect.
-
-A receipt must remain deterministic enough to support:
-
-* recorded artifact linkage
-* digest reproduction
-* cross-implementation verification where declared
-* evidence registration in VERIFRAX
-
-### Refusals
-
-Refusals are canonical runtime outcomes when admission conditions fail.
-
-This repository must treat refusal as first-class, not as an implementation afterthought.
-
-## Artifact boundary
-
-CORPIFORM is already part of the recorded chain through artifact-0004 and is load-bearing for artifact-0005.
-
-### Artifact-0004 relationship
-
-The currently recorded compatibility boundary is the artifact-0004 execution boundary.
-
-That means this README may describe artifact-0004 as the recorded bounded execution boundary.
-
-It must not describe artifact-0004 as equivalent to full public canonical seal.
-
-### Artifact-0005 relationship
-
-CORPIFORM is required for artifact-0005 because artifact-0005 depends on:
-
-* execution under public canonical authority
-* recorded CORPIFORM receipt output
-* reproducible receipt linkage into VERIFRAX evidence
-* matching downstream verification interpretation
-
-This repository must therefore mention artifact-0005 as an active dependency boundary.
-
-It must not describe artifact-0005 as sealed or complete unless the VERIFRAX evidence root proves that state.
+Execution here is permitted consequence, not upstream truth.
 
 ## Verifier relationship
 
-CORPIFORM produces runtime material that downstream verifier surfaces interpret.
+CORPIFORM and `VERIFRAX-verify` must not collapse into one surface.
 
-That means this repository must remain legible to both:
+CORPIFORM executes and emits receipts.
+`VERIFRAX-verify` verifies published material.
 
-* `VERIFRAX` as the evidence and verification boundary
-* `VERIFRAX-verify` as the public verification surface
+Execution is not verification.
+Verification is not execution.
 
-If receipt semantics drift without evidence repair, the execution layer becomes unreadable downstream.
+## Not this
 
-## Inputs and outputs
-
-### Inputs
-
-This repository consumes:
-
-* authority references produced by AUCTORISEAL
-* governed boundary truth from `.github`
-* runtime input sets for bounded execution
-* command and scope material required by the selected execution body
-
-### Outputs
-
-This repository produces:
-
-* permitted execution results
-* receipt artifacts
-* refusal artifacts
-* deterministic runtime state transitions within its declared boundary
-
-It does not produce:
-
-* authority objects
-* authored protocol source material
-* derived specification publication
-* proof landing content
-* public verifier UI
-
-## Current reading rule
-
-Read this repository for runtime semantics, receipt semantics, and execution admission/refusal boundaries.
-
-Read these neighboring repositories for the rest of the chain:
-
-* [`.github`](https://github.com/Verifrax/.github) — governance root
-* [`AUCTORISEAL`](https://github.com/Verifrax/AUCTORISEAL) — authority issuance and publication
-* [`VERIFRAX`](https://github.com/Verifrax/VERIFRAX) — evidence root and artifact chain
-* [`VERIFRAX-verify`](https://github.com/Verifrax/VERIFRAX-verify) — public verification surface
-* [`VERIFRAX-SPEC`](https://github.com/Verifrax/VERIFRAX-SPEC) — derived specification publication
-* [`VERIFRAX-DOCS`](https://github.com/Verifrax/VERIFRAX-DOCS) — documentation/reference surface
-
-## CI and determinism expectations
-
-Any CI described here must be real and load-bearing.
-
-At minimum, CORPIFORM should enforce real checks for:
-
-* identity alignment
-* version and tag alignment
-* deterministic receipt behavior on fixed input
-* receipt schema stability
-* authority-reference consistency
-* runtime boundary drift detection
-
-This README must not use badge theater to imply execution guarantees that the runtime and evidence do not actually prove.
-
-
-## Verifrax system path labels
-
-The governed Verifrax path that this README must stay compatible with is:
-
-1. `.github` — organization governance and governed repository boundary
-2. `AUCTORISEAL` — authority issuance and public authority reference
-3. `CORPIFORM` — governed execution and receipt emission
-4. `VERIFRAX` — authored protocol, evidence root, and artifact-chain registration boundary
-5. `VERIFRAX-SPEC` — derived specification publication surface
-6. `VERIFRAX-PROFILES` — deterministic profile-constraint surface
-7. `VERIFRAX-SAMPLES` — pinned sample and reproducibility surface
-8. `VERIFRAX-verify` — public verification repository and UI boundary
-9. `VERIFRAX-DOCS` — explanatory documentation surface
-10. `cicullis` — enforcement boundary
-11. `proof` — proof publication surface
-12. `SIGILLARIUM` — seal and archive reference surface
-13. `apply` — intake surface
-
-The live host-label map that must remain explicit and non-contradictory is:
-
-* `https://api.verifrax.net/` — execution surface
-* `https://proof.verifrax.net/` — proof publication surface
-* `https://auctoriseal.verifrax.net/` — authority issuance and authority reference surface
-* `https://corpiform.verifrax.net/` — runtime and receipt reference surface
-* `https://cicullis.verifrax.net/` — enforcement reference surface
-* `https://verify.verifrax.net/` — public verification surface
-* `https://sigillarium.verifrax.net/` — seal and archive reference surface
-* `https://apply.verifrax.net/` — intake surface
-* `https://docs.verifrax.net/` — documentation surface
-
-This README must remain compatible with `artifact-0005` as the load-bearing authority → execution → verification → evidence boundary without claiming that this repository alone authors, proves, seals, or registers `artifact-0005` unless that role is actually true for this repository.
-
-
-## Security
-
-Do not publish authority secrets, private runtime credentials, hidden execution inputs, unpublished emergency controls, or compromise details that would weaken the governed execution boundary.
-
-Runtime compromise is not a documentation-only problem. It is an execution-integrity event.
-
-## Contributing
-
-A contribution is wrong if it:
-
-* blurs execution with authority issuance
-* blurs execution with truth verification
-* overclaims compatibility beyond the recorded boundary
-* hides receipt semantics behind prose only
-* weakens refusal semantics
-* weakens replay resistance
-* introduces future-state claims as current truth
+CORPIFORM is not the constitutional source of truth.
+CORPIFORM is not canonical world-state.
+CORPIFORM is not reconciliation machinery.
+CORPIFORM is not sovereign cognition.
+CORPIFORM is not authority issuance.
+CORPIFORM is not verification.
+CORPIFORM is not proof publication.
+CORPIFORM is not intake.
 
 ## License
 
-Apache License Version 2.0. See `LICENSE`.
-
-## Adjacent sovereign surfaces
-
-This repository is part of the Verifrax sovereign stack and remains bounded relative to:
-
-- **[ANAGNORIUM](https://github.com/Verifrax/ANAGNORIUM)** for terminal recognition
-- **[REGRESSORIUM](https://github.com/Verifrax/REGRESSORIUM)** for terminal recourse
+Apache License Version 2.0
