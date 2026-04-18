@@ -8,7 +8,7 @@ def test_execution_receipt_object_minimum():
     data = json.loads((ROOT / "receipts/current/execution-receipt-0001.json").read_text())
     receipt = json.loads((ROOT / "evidence/artifact-0005/receipt/receipt.json").read_text())
 
-    assert data["object_type"] == "ExecutionReceiptObject"
+    assert data["object_type"] == "ExecutionReceipt"
     assert data["status"] == "ACTIVE_TRUTH"
     assert data["canonical_receipt_ref"] == "evidence/artifact-0005/receipt/receipt.json"
     assert data["canonical_receipt_canonical_ref"] == "evidence/artifact-0005/receipt/receipt.canonical.txt"
