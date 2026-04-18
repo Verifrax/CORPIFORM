@@ -32,6 +32,7 @@ Commands without valid authority are rejected.
 
 ### Receipt Output
 Defines the structure of execution receipts emitted on success.
+The current execution-receipt entry surface is `receipts/current/execution-receipt-0001.json`.
 
 ### Denial Output
 Defines the structure of denial artifacts emitted on refusal.

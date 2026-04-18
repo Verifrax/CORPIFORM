@@ -79,6 +79,7 @@ It does not replace adjacent sovereign boundaries.
 - enforces execute-once and replay-resistant runtime posture
 - preserves a clean runtime boundary between authority, execution, and verification
 - exposes inspectable execution semantics inside the artifact chain
+- publishes the current execution-receipt object for the active recorded execution boundary
 
 ## What it does not do
 
@@ -134,7 +135,7 @@ It must not become:
 
 ## Public surface
 
-The public surface of this repository is its repository identity, README boundary, package surface, host surface, and any explicitly published execution-reference materials carried by this repository.
+The public surface of this repository is its repository identity, README boundary, package surface, host surface, the current execution-receipt object, and any explicitly published execution-reference materials carried by this repository.
 
 Publication here is not doctrine.
 Publication here is not state.
@@ -173,6 +174,12 @@ That does not by itself mean:
 - the result was cognitively derived by TACHYRIUM
 
 Execution here is permitted consequence, not upstream truth.
+
+## Execution-receipt object
+
+- current active execution-receipt object: `receipts/current/execution-receipt-0001.json`
+- historical execution-receipt archive: `receipts/history/`
+- this object binds the active recorded CORPIFORM execution boundary to one machine-readable current execution-receipt surface
 
 ## Verifier relationship
 

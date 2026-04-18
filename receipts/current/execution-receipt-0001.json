@@ -1,0 +1,32 @@
+{
+  "object_type": "ExecutionReceiptObject",
+  "execution_receipt_object_id": "execution-receipt-0001",
+  "status": "ACTIVE_TRUTH",
+  "claim_class_ref": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/claim-classes/execution-receipt.json",
+  "canonical_receipt_ref": "evidence/artifact-0005/receipt/receipt.json",
+  "canonical_receipt_canonical_ref": "evidence/artifact-0005/receipt/receipt.canonical.txt",
+  "canonical_receipt_digest_ref": "evidence/artifact-0005/receipt/receipt.digest.txt",
+  "receipt_schema_ref": "interfaces/receipt.output.schema.json",
+  "command_schema_ref": "interfaces/execution.command.schema.json",
+  "authority_input_schema_ref": "interfaces/authority.input.schema.json",
+  "historical_archive_ref": "receipts/history/",
+  "receipt_id": "8F88E46F-625B-4682-BF9A-D68ADD241FFF",
+  "command_id": "artifact-0005-cmd-mail-dispatch-001",
+  "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
+  "system": "CORPIFORM",
+  "version": "v0.1.4",
+  "body": "mail",
+  "action": "MAIL_DISPATCH",
+  "adapter": "smtp",
+  "outcome": "EXECUTED",
+  "timestamp": "2026-03-27T16:52:32Z",
+  "evidence_binding": {
+    "artifact_ref": "evidence/artifact-0005/",
+    "receipt_ref": "evidence/artifact-0005/receipt/receipt.json",
+    "authority_basis_note": "Current receipt object is bound to recorded execution evidence under artifact-0005 and does not originate authority."
+  },
+  "notes": [
+    "Current machine-readable execution-receipt entry surface for the active recorded CORPIFORM execution boundary.",
+    "Historical receipt entry surfaces must not outrank this current receipt object."
+  ]
+}
