@@ -1,5 +1,5 @@
 {
-  "object_type": "ExecutionReceiptObject",
+  "object_type": "ExecutionReceipt",
   "execution_receipt_object_id": "execution-receipt-0001",
   "status": "ACTIVE_TRUTH",
   "claim_class_ref": "https://github.com/Verifrax/SYNTAGMARIUM/blob/main/claim-classes/execution-receipt.json",
