@@ -17,6 +17,12 @@ A receipt is a **signed, immutable artifact** emitted only after:
 
 Receipts are facts.
 
+Current execution-receipt entry surface:
+
+- `receipts/current/execution-receipt-0001.json`
+
+Historical execution-receipt entry surfaces must live only under `receipts/history/`.
+
 ---
 
 ## RECEIPT GUARANTEES

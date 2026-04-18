@@ -17,6 +17,12 @@ No receipt means no execution.
 
 Receipts are facts, not interpretations.
 
+Current execution-receipt entry surface:
+
+- `receipts/current/execution-receipt-0001.json`
+
+Historical execution-receipt entry surfaces must live only under `receipts/history/`.
+
 ---
 
 ## RECEIPT CONTENT
