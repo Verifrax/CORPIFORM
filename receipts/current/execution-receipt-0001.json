@@ -27,6 +27,15 @@
   },
   "notes": [
     "Current machine-readable execution-receipt entry surface for the active recorded CORPIFORM execution boundary.",
-    "Historical receipt entry surfaces must not outrank this current receipt object."
-  ]
+    "Historical receipt entry surfaces must not outrank this current receipt object.",
+    "This receipt object binds the current external authority object and current verification result without becoming authority issuance or verification.",
+    "Recognition and recourse remain terminal downstream objects and are linked here for chain legibility only.",
+    "Continuity and transfer remain VERIFRAX survivability surfaces and are linked here without replacing their sovereign role."
+  ],
+  "authority_object_ref": "https://github.com/Verifrax/AUCTORISEAL/blob/main/authorities/current/authority-object-0001.json",
+  "verification_result_ref": "https://github.com/Verifrax/VERIFRAX/blob/main/verification/results/current/verification-result-0001.json",
+  "recognition_object_ref": "https://github.com/Verifrax/ANAGNORIUM/blob/main/recognitions/current/recognition-object-0001.json",
+  "recourse_object_ref": "https://github.com/Verifrax/REGRESSORIUM/blob/main/claims/current/recourse-object-0001.json",
+  "continuity_ref": "https://github.com/Verifrax/VERIFRAX/blob/main/evidence/continuity/current/continuity-object-0001.json",
+  "transfer_ref": "https://github.com/Verifrax/VERIFRAX/blob/main/evidence/transfer/current/transfer-object-0001.json"
 }
