@@ -17,7 +17,7 @@ CORPIFORM is the Verifrax governed-execution boundary: the public surface that c
 
 Current release identity:
 
-* Version: **v0.1.4**
+* Version: **v0.1.7**
 * State: **PRE-FINAL EXECUTION SURFACE**
 * Release type: **PUBLIC PRE-SEAL**
 * Authority model: **EXTERNAL (AUCTORISEAL-GOVERNED)**

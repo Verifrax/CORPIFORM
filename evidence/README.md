@@ -444,7 +444,7 @@ The current canonical public evidence surfaces are:
 - ledger and revocation surface under `ledger/` and `revocation/`
 - adversarial fixture and test surface under `fixtures/` and `tests/`
 - runtime and observability surface under `runtime/`, `tools/`, and `observability/`
-- release boundary surface under `.verifrax/tags/v0.1.4.txt`
+- release boundary surface under `.verifrax/tags/v0.1.7.txt`
 
 ## Entry points
 
@@ -466,7 +466,7 @@ If you are entering this repository for the first time, start here:
 
 CORPIFORM records its declared repository release boundary in:
 
-- `.verifrax/tags/v0.1.4.txt`
+- `.verifrax/tags/v0.1.7.txt`
 
 This surface binds the declared version to:
 - repository identity
@@ -500,11 +500,11 @@ That is the minimum condition for CORPIFORM to become a legible execution compon
 
 The active repository release declaration is:
 
-- `.verifrax/tags/v0.1.4.txt`
+- `.verifrax/tags/v0.1.7.txt`
 
 This declaration currently records:
 
-- version `v0.1.4`
+- version `v0.1.7`
 - repository identity `CORPIFORM`
 - recorded repository head
 - recorded timestamp

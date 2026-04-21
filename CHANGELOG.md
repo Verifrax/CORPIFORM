@@ -17,7 +17,7 @@ No entry is ever modified or removed.
 
 ---
 
-## [v0.1.4] — PRE-SEAL
+## [v0.1.7] — PRE-SEAL
 
 **STATUS:** NON-FINAL  
 **AUTHORITY:** NOT SEALED  
