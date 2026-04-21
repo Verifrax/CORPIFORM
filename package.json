@@ -1,6 +1,6 @@
 {
   "name": "@verifrax/corpiform",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "description": "CORPIFORM is an authority-governed deterministic execution runtime that consumes AUCTORISEAL authority and emits signed, replay-resistant receipts.",
   "license": "AGPL-3.0",
   "private": false,
