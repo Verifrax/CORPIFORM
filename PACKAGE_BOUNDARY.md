@@ -6,7 +6,7 @@
 - Package layer: authority / execution substrate
 - Package category: shell-based CLI / action-wrapper package
 - Repository source: `github.com/Verifrax/CORPIFORM`
-- Initial package version target: `0.1.4`
+- Initial package version target: `0.1.7`
 
 ## Why this category
 

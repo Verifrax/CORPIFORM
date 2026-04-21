@@ -3,7 +3,7 @@
   "system": "CORPIFORM",
   "system_fingerprint": "corpiform-instance-fingerprint",
   "build_hash": "64ce76ebb2cd49e70773fee7177a8398a8bd7658",
-  "version": "v0.1.4",
+  "version": "v0.1.7",
   "command_id": "artifact-0005-cmd-mail-dispatch-001",
   "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
   "body": "mail",

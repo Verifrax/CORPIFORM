@@ -1,4 +1,4 @@
-VERSION: v0.1.4
+VERSION: v0.1.7
 SYSTEM: CORPIFORM
 REPOSITORY: https://github.com/Verifrax/CORPIFORM
 HEAD: ee48dfb8d91acc774cf499cc8b2c7dfca1c6d1a1

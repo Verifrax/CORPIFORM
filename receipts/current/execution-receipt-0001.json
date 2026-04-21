@@ -14,7 +14,7 @@
   "command_id": "artifact-0005-cmd-mail-dispatch-001",
   "authority_seal_id": "seal_9c1568bb9ef7423283ca56ecdb7dc278",
   "system": "CORPIFORM",
-  "version": "v0.1.4",
+  "version": "v0.1.7",
   "body": "mail",
   "action": "MAIL_DISPATCH",
   "adapter": "smtp",
