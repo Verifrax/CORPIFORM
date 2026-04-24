@@ -1,5 +1,7 @@
 # CORPIFORM
 
+* License: GNU General Public License v3.0
+
 Package: @verifrax/corpiform
 Binary: corpiform
 Repository: Verifrax/CORPIFORM
@@ -52,8 +54,6 @@ This repository is part of the VERIFRAX proof perimeter.
 * Public host ownership: `corpiform.verifrax.net`
 * npm package: `@verifrax/corpiform`
 * Current repository posture: public pre-seal execution surface
-* License: Apache License Version 2.0
-
 ## Boundary
 
 This repository owns governed execution and deterministic receipt emission only.
@@ -204,4 +204,4 @@ CORPIFORM is not intake.
 
 ## License
 
-Apache License Version 2.0
+This repository is licensed under the GNU General Public License v3.0. See `LICENSE`.
